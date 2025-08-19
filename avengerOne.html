@@ -1,55 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thor - Marvel Hero</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="stylesTwo.css"> 
 </head>
 
-<body>
-
+<body class="theme-thor">
   <div id="menu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact</a>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="index.html#about"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a>
   </div>
 
   <div class="hero-container">
-  <h2 class="hero-name" style="color:red; ">Thor</h2>
-
-    <div class="hero-image">
-      <img src="images/avengers_01.jpg" alt="Thor">
+    <div class="hero-header">
+      <h2 class="hero-name"><i class="fas fa-bolt"></i> Thor</h2>
     </div>
 
-    <div class="bio-section">
-      <h4>Bio</h4>
-      <p><strong>Full Name:</strong> Thor Odinson</p>
-      <p><strong>Place of Birth:</strong> Asgard</p>
-      <p><strong>Alignment:</strong> Good</p>
-      <p><strong>Gender:</strong> Male</p>
-      <p><strong>Race:</strong> Asgardian</p>
+    <div class="hero-content">
+      <div class="hero-image">
+        <img src="images/avengers_01.jpg" alt="Thor">
+      </div>
+      
+      <div class="hero-details">
+        <div class="bio-section">
+          <h4><i class="fas fa-user"></i> Bio</h4>
+          <p><strong>Full Name:</strong> Thor Odinson</p>
+          <p><strong>Place of Birth:</strong> Asgard</p>
+          <p><strong>Alignment:</strong> Good</p>
+          <p><strong>Gender:</strong> Male</p>
+          <p><strong>Race:</strong> Asgardian</p>
+        </div>
+
+        <div class="stats-section">
+          <h4><i class="fas fa-chart-line"></i> Power Stats</h4>
+          <p><strong>Intelligence:</strong> 
+            <span class="stat-value">69%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="69"></span>
+            </span>
+          </p>
+          <p><strong>Strength:</strong> 
+            <span class="stat-value">100%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="100"></span>
+            </span>
+          </p>
+          <p><strong>Speed:</strong> 
+            <span class="stat-value">92%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="92"></span>
+            </span>
+          </p>
+          <p><strong>Durability:</strong> 
+            <span class="stat-value">100%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="100"></span>
+            </span>
+          </p>
+          <p><strong>Power:</strong> 
+            <span class="stat-value">100%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="100"></span>
+            </span>
+          </p>
+          <p><strong>Combat:</strong> 
+            <span class="stat-value">85%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="85"></span>
+            </span>
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div class="stats-section">
-      <h4>Power Stats</h4>
-      <p><strong>Intelligence:</strong> 69%</p>
-      <p><strong>Strength:</strong> 100%</p>
-      <p><strong>Speed:</strong> 92%</p>
-      <p><strong>Durability:</strong> 100%</p>
-      <p><strong>Power:</strong> 100%</p>
-      <p><strong>Combat:</strong> 85%</p>
+    <div class="next-btn">
+      <a href="avengerTwo.html"><i class="fas fa-arrow-right"></i> Next Hero</a>
     </div>
+  </div>
+  
+  <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
 
-   <div class="next-btn">
-      <a href="avengerTwo.html">Next Hero →</a>
-    </div>
-<br/>
   <footer>
-   <p> 2025 Marvel Gallery | Created by Tj Killer</p>
+    <p>2025 Marvel Gallery | Created by Tj Killer</p>
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animate stat bars
+      const statBars = document.querySelectorAll('.stat-fill');
+      statBars.forEach(bar => {
+        const width = bar.getAttribute('data-width');
+        setTimeout(() => {
+          bar.style.width = width + '%';
+        }, 300);
+      });
+      
+      // Back to top functionality
+      const backToTopButton = document.querySelector('.back-to-top');
+      backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      
+      // Show/hide back to top button based on scroll position
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          backToTopButton.style.opacity = '1';
+          backToTopButton.style.visibility = 'visible';
+        } else {
+          backToTopButton.style.opacity = '0';
+          backToTopButton.style.visibility = 'hidden';
+        }
+      });
+    });
+  </script>
 </body>
-
 </html>
