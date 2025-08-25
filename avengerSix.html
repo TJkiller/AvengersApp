@@ -1,55 +1,121 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Black Widow - Marvel Hero</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="stylesTwo.css">
 </head>
 
-<body>
-
+<body class="theme-blackwidow">
   <div id="menu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact</a>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="index.html#about"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a>
   </div>
 
   <div class="hero-container">
-    <h2 class="hero-name" style="color:black; ">Black Widow</h2>
-
-    <div class="hero-image">
-      <img src="images/avengers_06.jpg" alt="Black-Widow">
+    <div class="hero-header">
+      <h2 class="hero-name"><i class="fas fa-spider"></i> Black Widow</h2>
     </div>
 
-    <div class="bio-section">
-        <h4>Bio</h4>
-        <p>Full Name: Natalia Romanova</p>
-        <p>Place Of Birth: Russia</p>
-        <p>Alignment: Good</p>
-        <p>Gender: Female</p>
-        <p>Race: Human </p>
-    </div>
-
-    <div class="stats-section">
-        <h4>Power Stats</h4>
-        <p>Intelligence: 75%</p>
-        <p>Strength: 13%</p>
-        <p>Speed: 27%</p>
-        <p>Durability: 32%</p>
-        <p>Power: 39%</p>
-        <p>Combat: 100%</p>
-    </div>
-
-       <div class="next-btn">
-      <a href="index.html">Return Home →</a>
+    <div class="hero-content">
+      <div class="hero-image">
+        <img src="images/avengers_06.jpg" alt="Black Widow">
       </div>
+      
+      <div class="hero-details">
+        <div class="bio-section">
+          <h4><i class="fas fa-user"></i> Bio</h4>
+          <p><strong>Full Name:</strong> Natalia Romanova</p>
+          <p><strong>Place of Birth:</strong> Russia</p>
+          <p><strong>Alignment:</strong> Good</p>
+          <p><strong>Gender:</strong> Female</p>
+          <p><strong>Race:</strong> Human</p>
+        </div>
 
-<br/>
+        <div class="stats-section">
+          <h4><i class="fas fa-chart-line"></i> Power Stats</h4>
+          <p><strong>Intelligence:</strong> 
+            <span class="stat-value">75%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="75"></span>
+            </span>
+          </p>
+          <p><strong>Strength:</strong> 
+            <span class="stat-value">13%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="13"></span>
+            </span>
+          </p>
+          <p><strong>Speed:</strong> 
+            <span class="stat-value">27%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="27"></span>
+            </span>
+          </p>
+          <p><strong>Durability:</strong> 
+            <span class="stat-value">32%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="32"></span>
+            </span>
+          </p>
+          <p><strong>Power:</strong> 
+            <span class="stat-value">39%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="39"></span>
+            </span>
+          </p>
+          <p><strong>Combat:</strong> 
+            <span class="stat-value">100%</span>
+            <span class="stat-bar">
+              <span class="stat-fill" data-width="100"></span>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="next-btn">
+      <a href="index.html"><i class="fas fa-home"></i> Return Home</a>
+    </div>
+  </div>
+  
+  <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
   <footer>
-   <p> 2025 Marvel Gallery | Created by TJ Killer</p>
+    <p>2025 Marvel Gallery | Created by Tj Killer</p>
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animate stat bars
+      const statBars = document.querySelectorAll('.stat-fill');
+      statBars.forEach(bar => {
+        const width = bar.getAttribute('data-width');
+        setTimeout(() => {
+          bar.style.width = width + '%';
+        }, 300);
+      });
+      
+      // Back to top functionality
+      const backToTopButton = document.querySelector('.back-to-top');
+      backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      
+      // Show/hide back to top button based on scroll position
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          backToTopButton.style.opacity = '1';
+          backToTopButton.style.visibility = 'visible';
+        } else {
+          backToTopButton.style.opacity = '0';
+          backToTopButton.style.visibility = 'hidden';
+        }
+      });
+    });
+  </script>
 </body>
-
 </html>

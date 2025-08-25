@@ -1,37 +1,331 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marvel Avengers Gallery - Explore Your Favorite Heroes</title>
+  <meta name="description" content="Discover detailed profiles, powers and stories of your favorite Marvel Avengers heroes in our comprehensive gallery.">
   <link rel="stylesheet" href="styles.css">
-  <title>Marvel Avengers Gallery</title>
 </head>
-
 <body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">⚡ Marvel Gallery</a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#gallery">Heroes</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-  <div id="menu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html">Contact</a>
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="container">
+      <h1>Marvel Avengers Gallery</h1>
+      <p>Discover the extraordinary powers, origins and stories of Earth's Mightiest Heroes</p>
+      <a href="#gallery" class="cta-button">Explore Heroes</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- Welcome Section -->
+    <section class="welcome-section fade-in">
+      <h2>Welcome to the Marvel Universe</h2>
+      <p>Dive deep into the world of Marvel's most iconic superheroes. Our comprehensive gallery features detailed character profiles, power statistics, origin stories and stunning visuals that bring these legendary heroes to life.</p>
+      
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🦸‍♂️</div>
+          <h4>Hero Profiles</h4>
+          <p>Complete character bios with origins, powers and detailed statistics</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h4>Power Stats</h4>
+          <p>Comprehensive power ratings for intelligence, strength, speed and combat</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌟</div>
+          <h4>Regular Updates</h4>
+          <p>Fresh content and new heroes added regularly to keep you engaged</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+      <h2>Meet the Heroes</h2>
+      <div class="gallery">
+        <div class="hero-card">
+          <img src="images/avengers_01.jpg" alt="Thor - God of Thunder" />
+          <div class="hero-info">
+            <h3>Thor</h3>
+            <p>The mighty God of Thunder from Asgard, wielding the enchanted hammer Mjolnir with incredible strength and lightning powers.</p>
+            <a href="avengerOne.html" class="explore-btn">Explore Profile</a>
+          </div>
+        </div>
+        
+        <div class="hero-card">
+          <img src="images/avengers_02.jpg" alt="Iron Man - Genius Billionaire" />
+          <div class="hero-info">
+            <h3>Iron Man</h3>
+            <p>Tony Stark, the genius billionaire philanthropist in his high-tech armor suit, protecting the world with innovation.</p>
+            <a href="avengerTwo.html" class="explore-btn">Explore Profile</a>
+          </div>
+        </div>
+        
+        <div class="hero-card">
+          <img src="images/avengers_05.jpg" alt="Captain America - First Avenger" />
+          <div class="hero-info">
+            <h3>Captain America</h3>
+            <p>Steve Rogers, the First Avenger with enhanced abilities and an unbreakable shield, leading with honor and courage.</p>
+            <a href="avengerFive.html" class="explore-btn">Explore Profile</a>
+          </div>
+        </div>
+        
+        <div class="hero-card">
+          <img src="images/avengers_03.jpg" alt="Hulk - The Incredible" />
+          <div class="hero-info">
+            <h3>The Hulk</h3>
+            <p>Dr. Bruce Banner transforms into the incredible green giant with limitless strength and near invulnerability.</p>
+            <a href="avengerThree.html" class="explore-btn">Explore Profile</a>
+          </div>
+        </div>
+        
+        <div class="hero-card">
+          <img src="images/avengers_06.jpg" alt="Black Widow - Master Spy" />
+          <div class="hero-info">
+            <h3>Black Widow</h3>
+            <p>Natasha Romanoff, the master spy and assassin with unmatched combat skills and tactical intelligence.</p>
+            <a href="avengerSix.html" class="explore-btn">Explore Profile</a>
+          </div>
+        </div>
+        
+        <div class="hero-card">
+          <img src="images/avengers_04.jpg" alt="Hawkeye - Master Archer" />
+          <div class="hero-info">
+            <h3>Hawkeye</h3>
+            <p>Clint Barton, the master archer with perfect aim and an arsenal of specialized arrows for any situation.</p>
+            <a href="AvengerFour.html" class="explore-btn">Explore Profile</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>About Marvel Gallery</h2>
+          <p>We are passionate Marvel fans dedicated to creating the ultimate resource for exploring your favorite superheroes. Our mission is to provide comprehensive, accurate and engaging content about the characters that have captured imaginations for generations.</p>
+          <p>From the cosmic powers of Thor to the technological genius of Iron Man, we cover every aspect of what makes these heroes extraordinary.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Heroes Featured</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">1000+</div>
+            <div class="stat-label">Daily Visitors</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">99%</div>
+            <div class="stat-label">Fan Satisfaction</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Always Updated</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <h2>Get in Touch</h2>
+      <p style="text-align: center; margin-bottom: 30px; color: #666;">Have questions, feedback or character suggestions? We would love to hear from you!</p>
+      
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">📧</div>
+          <h4>Email Us</h4>
+          <p><a href="mailto:hello@marvelgallery.com" class="social-link">thato.john1605</a></p>
+          <p style="font-size: 0.9rem; color: #888;">We respond within 24 hours</p>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">📱</div>
+          <h4>Follow Us</h4>
+          <p><a href="#" class="social-link">@MarvelGalleryHQ</a></p>
+          <p style="font-size: 0.9rem; color: #888;">Latest updates & hero spotlights</p>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">💬</div>
+          <h4>Community</h4>
+          <p><a href="#" class="social-link">Join our Discord</a></p>
+          <p style="font-size: 0.9rem; color: #888;">Connect with fellow fans</p>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">🛠️</div>
+          <h4>Support</h4>
+          <p><a href="#" class="social-link">Help Center</a></p>
+          <p style="font-size: 0.9rem; color: #888;">Technical support & FAQs</p>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="header">
-    <h1>Marvel Avengers Gallery</h1>
-    <p>Explore the heroes and their powers..</p>
-  </div>
-
-  <div class="gallery">
-    <a href="avengerOne.html"><img src="images/avengers_01.jpg" alt="Avenger 1"/></a>
-    <a href="avengerTwo.html"><img src="images/avengers_02.jpg" alt="Avenger 2"/></a>
-    <a href="avengerThree.html"><img src="images/avengers_03.jpg" alt="Avenger 3"/></a>
-    <a href="avengerFour.html"><img src="images/avengers_04.jpg" alt="Avenger 4"/></a>
-    <a href="avengerFive.html"><img src="images/avengers_05.jpg" alt="Avenger 5"/></a>
-    <a href="avengerSix.html"><img src="images/avengers_06.jpg" alt="Avenger 6"/></a>
-  </div>
-
+  <!-- Footer -->
   <footer>
-    <p> 2025 Marvel Gallery | Created by TJ Killer</p>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#gallery">Heroes</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+      <p>&copy; 2025 Marvel Gallery. Created with ❤️ for Marvel fans worldwide.</p>
+      <p style="font-size: 0.9rem; color: #ccc; margin-top: 10px;">
+        This is a fan made website. Marvel characters are property of Marvel Entertainment.
+      </p>
+    </div>
   </footer>
 
-</body>
+  <script>
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.querySelector('.theme-icon');
+    const body = document.body;
 
+    // Check for saved theme preference or default to 'light'
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
+    
+    // Update icon based on current theme
+    function updateThemeIcon(theme) {
+      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+    
+    updateThemeIcon(currentTheme);
+
+    // Theme toggle event listener
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+      
+      // Add a fun animation to the toggle button
+      themeToggle.style.transform = 'scale(0.9)';
+      setTimeout(() => {
+        themeToggle.style.transform = 'scale(1)';
+      }, 150);
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+       // Add loading animation when clicking hero cards and navigate to specific hero page
+    document.querySelectorAll('.explore-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const originalText = this.textContent;
+        const targetPage = this.getAttribute('href'); // Get the href from the link
+        
+        this.innerHTML = '<span class="loading"></span> Loading...';
+        
+        // After a short delay, navigate to the specific hero page
+        setTimeout(() => {
+          window.location.href = targetPage;
+        }, 1000);
+      });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cards and sections
+    document.querySelectorAll('.hero-card, .feature-card, .contact-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Marvel-style particle effect (optional enhancement)
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.style.position = 'fixed';
+      particle.style.width = '4px';
+      particle.style.height = '4px';
+      particle.style.background = 'var(--marvel-gold)';
+      particle.style.borderRadius = '50%';
+      particle.style.pointerEvents = 'none';
+      particle.style.zIndex = '999';
+      particle.style.opacity = '0.7';
+      
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      
+      particle.style.left = x + 'px';
+      particle.style.top = y + 'px';
+      
+      document.body.appendChild(particle);
+      
+      // Animate and remove
+      setTimeout(() => {
+        particle.style.transition = 'opacity 2s ease, transform 2s ease';
+        particle.style.opacity = '0';
+        particle.style.transform = 'translateY(-50px)';
+        
+        setTimeout(() => {
+          if (particle.parentNode) {
+            particle.parentNode.removeChild(particle);
+          }
+        }, 2000);
+      }, 100);
+    }
+
+    // Create occasional particles
+    setInterval(createParticle, 3000);
+  </script>
+</body>
 </html>
