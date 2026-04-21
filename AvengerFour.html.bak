@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iron Man - Marvel Hero</title>
+  <title>Hawkeye - Marvel Hero</title>
   <link rel="stylesheet" href="stylesTwo.css">
 </head>
 
-<body class="theme-ironman">
+<body class="theme-hawkeye">
   <div id="menu">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
     <a href="index.html#about"><i class="fas fa-info-circle"></i> About Us</a>
@@ -16,19 +16,19 @@
 
   <div class="hero-container">
     <div class="hero-header">
-      <h2 class="hero-name"><i class="fas fa-rocket"></i> Iron Man</h2>
+      <h2 class="hero-name"><i class="fas fa-bullseye"></i> Hawkeye</h2>
     </div>
 
     <div class="hero-content">
       <div class="hero-image">
-        <img src="images/avengers_02.jpg" alt="Iron Man">
+        <img src="images/avengers_04.jpg" alt="Hawkeye">
       </div>
       
       <div class="hero-details">
         <div class="bio-section">
           <h4><i class="fas fa-user"></i> Bio</h4>
-          <p><strong>Full Name:</strong> Tony Stark</p>
-          <p><strong>Place of Birth:</strong> Long Island, New York</p>
+          <p><strong>Full Name:</strong> Clinton Barton</p>
+          <p><strong>Place of Birth:</strong> Iowa</p>
           <p><strong>Alignment:</strong> Good</p>
           <p><strong>Gender:</strong> Male</p>
           <p><strong>Race:</strong> Human</p>
@@ -37,33 +37,33 @@
         <div class="stats-section">
           <h4><i class="fas fa-chart-line"></i> Power Stats</h4>
           <p><strong>Intelligence:</strong> 
-            <span class="stat-value">100%</span>
+            <span class="stat-value">50%</span>
             <span class="stat-bar">
-              <span class="stat-fill" data-width="100"></span>
+              <span class="stat-fill" data-width="50"></span>
             </span>
           </p>
           <p><strong>Strength:</strong> 
-            <span class="stat-value">85%</span>
+            <span class="stat-value">12%</span>
             <span class="stat-bar">
-              <span class="stat-fill" data-width="85"></span>
+              <span class="stat-fill" data-width="12"></span>
             </span>
           </p>
           <p><strong>Speed:</strong> 
-            <span class="stat-value">60%</span>
+            <span class="stat-value">23%</span>
             <span class="stat-bar">
-              <span class="stat-fill" data-width="60"></span>
+              <span class="stat-fill" data-width="23"></span>
             </span>
           </p>
           <p><strong>Durability:</strong> 
-            <span class="stat-value">90%</span>
+            <span class="stat-value">14%</span>
             <span class="stat-bar">
-              <span class="stat-fill" data-width="90"></span>
+              <span class="stat-fill" data-width="14"></span>
             </span>
           </p>
           <p><strong>Power:</strong> 
-            <span class="stat-value">95%</span>
+            <span class="stat-value">26%</span>
             <span class="stat-bar">
-              <span class="stat-fill" data-width="95"></span>
+              <span class="stat-fill" data-width="26"></span>
             </span>
           </p>
           <p><strong>Combat:</strong> 
@@ -77,7 +77,7 @@
     </div>
 
     <div class="next-btn">
-      <a href="avengerThree.html"><i class="fas fa-arrow-right"></i> Next Hero</a>
+      <a href="avengerFive.html"><i class="fas fa-arrow-right"></i> Next Hero</a>
     </div>
   </div>
   
