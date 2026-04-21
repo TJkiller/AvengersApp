@@ -92,7 +92,7 @@
       // Animate stat bars
       const statBars = document.querySelectorAll('.stat-fill');
       statBars.forEach(bar => {
-        const width = bar.getAttribute('data-width');
+        const width = bar.dataset.width;//yebo
         setTimeout(() => {
           bar.style.width = width + '%';
         }, 300);
