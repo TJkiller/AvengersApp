@@ -212,7 +212,7 @@
 
     // Check for saved theme preference or default to 'light'
     const currentTheme = localStorage.getItem('theme') || 'light';
-    body.setAttribute('data-theme', currentTheme);
+    body.dataset.theme = currentTheme;
     
     // Update icon based on current theme
     function updateThemeIcon(theme) {
@@ -223,10 +223,10 @@
 
     // Theme toggle event listener
     themeToggle.addEventListener('click', () => {
-      const currentTheme = body.getAttribute('data-theme');
+      const currentTheme = body.dataset.theme;
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       
-      body.setAttribute('data-theme', newTheme);
+      body.dataset.theme = newTheme;
       localStorage.setItem('theme', newTheme);
       updateThemeIcon(newTheme);
       
@@ -255,14 +255,13 @@
     document.querySelectorAll('.explore-btn').forEach(btn => {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
-        const originalText = this.textContent;
         const targetPage = this.getAttribute('href'); // Get the href from the link
         
         this.innerHTML = '<span class="loading"></span> Loading...';
         
         // After a short delay, navigate to the specific hero page
         setTimeout(() => {
-          window.location.href = targetPage;
+          globalThis.location.href = targetPage;
         }, 1000);
       });
     });
@@ -318,7 +317,7 @@
         
         setTimeout(() => {
           if (particle.parentNode) {
-            particle.parentNode.removeChild(particle);
+            particle.remove();
           }
         }, 2000);
       }, 100);
