@@ -116,6 +116,12 @@
 
   <script>
     // =============================================
+    // SUPABASE CONFIG
+    // =============================================
+    const SUPABASE_URL = 'https://zxhubiaitwrkyxoiojei.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4aHViaWFpdHdya3l4b2lvamVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5OTY2ODksImV4cCI6MjA5MzU3MjY4OX0.4v-vO3JA2jAU1ItSRHFOoZDfAjHEFmkuiPhDBy7ljiU';
+
+    // =============================================
     // STEP 1: Get the hero ID from the URL
     // Example: hero.html?id=thor  →  heroId = "thor"
     // =============================================
@@ -130,26 +136,55 @@
     }
 
     // =============================================
-    // STEP 2: Load heroes.json and find the hero
+    // STEP 2: Fetch this hero from Supabase
     // =============================================
     async function loadHero(id) {
       try {
-        const response = await fetch('heroes.json');
+        // Ask Supabase for the hero with matching id
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/heroes?id=eq.${id}&select=*`,
+          {
+            headers: {
+              'apikey': SUPABASE_KEY,
+              'Authorization': `Bearer ${SUPABASE_KEY}`,
+               'Content-Type': 'application/json' 
+            }
+          }
+        );
+
         const data = await response.json();
 
-        // Find the hero that matches our ID
-        const hero = data.heroes.find(h => h.id === id);
-
-        if (!hero) {
+        // Supabase returns an array — grab first item
+        if (!data || data.length === 0) {
           showError();
           return;
         }
 
+        const hero = data[0];
+
+        // If this hero has a "next" hero, fetch that too for the button label
+        let nextHero = null;
+        if (hero.next_hero) {
+          const nextResponse = await fetch(
+            `${SUPABASE_URL}/rest/v1/heroes?id=eq.${hero.next_hero}&select=id,name`,
+            {
+              headers: {
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`
+              }
+            }
+          );
+          const nextData = await nextResponse.json();
+          if (nextData && nextData.length > 0) {
+            nextHero = nextData[0];
+          }
+        }
+
         // Hero found — build the page
-        buildPage(hero, data.heroes);
+        buildPage(hero, nextHero);
 
       } catch (err) {
-        console.error('Error loading heroes.json:', err);
+        console.error('Error fetching from Supabase:', err);
         showError();
       }
     }
@@ -157,7 +192,7 @@
     // =============================================
     // STEP 3: Build the page with hero data
     // =============================================
-    function buildPage(hero, allHeroes) {
+    function buildPage(hero, nextHero) {
 
       // --- Page title ---
       document.title = hero.name + ' - Marvel Hero';
@@ -175,18 +210,19 @@
       img.alt = hero.name;
 
       // --- Bio fields ---
-      document.getElementById('bio-fullName').textContent = hero.bio.fullName;
-      document.getElementById('bio-placeOfBirth').textContent = hero.bio.placeOfBirth;
-      document.getElementById('bio-alignment').textContent = hero.bio.alignment;
-      document.getElementById('bio-gender').textContent = hero.bio.gender;
-      document.getElementById('bio-race').textContent = hero.bio.race;
+      // Note: Supabase column names are lowercase
+      document.getElementById('bio-fullName').textContent = hero.bio_fullname;
+      document.getElementById('bio-placeOfBirth').textContent = hero.bio_placeofbirth;
+      document.getElementById('bio-alignment').textContent = hero.bio_alignment;
+      document.getElementById('bio-gender').textContent = hero.bio_gender;
+      document.getElementById('bio-race').textContent = hero.bio_race;
 
       // --- Stats ---
       const statKeys = ['intelligence', 'strength', 'speed', 'durability', 'power', 'combat'];
       statKeys.forEach(stat => {
-        const value = hero.stats[stat];
+        // Supabase column names: stat_intelligence, stat_strength etc.
+        const value = hero['stat_' + stat];
         document.getElementById('stat-' + stat).textContent = value + '%';
-        // Animate the bar after a short delay
         setTimeout(() => {
           document.getElementById('fill-' + stat).style.width = value + '%';
         }, 300);
@@ -194,22 +230,19 @@
 
       // --- Next Hero Button ---
       const nextBtn = document.getElementById('next-btn');
-      if (hero.next) {
-        // Find the next hero's name
-        const nextHero = allHeroes.find(h => h.id === hero.next);
+      if (hero.next_hero && nextHero) {
         nextBtn.innerHTML = `
-          <a href="hero.html?id=${hero.next}">
-            <i class="fas fa-arrow-right"></i> Next: ${nextHero ? nextHero.name : 'Next Hero'}
+          <a href="hero.html?id=${hero.next_hero}">
+            <i class="fas fa-arrow-right"></i> Next: ${nextHero.name}
           </a>`;
       } else {
-        // Last hero — go back home
         nextBtn.innerHTML = `
           <a href="index.html">
             <i class="fas fa-home"></i> Return Home
           </a>`;
       }
 
-      // --- Show the content, hide loading ---
+      // --- Show content, hide loading ---
       document.getElementById('loading').style.display = 'none';
       document.getElementById('hero-content').style.display = 'block';
     }
