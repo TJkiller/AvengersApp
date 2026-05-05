@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marvel Hero</title>
+  <link rel="stylesheet" href="stylesTwo.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div id="menu">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="index.html#about"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
+
+  <!-- Hero Content (built by JavaScript) -->
+  <div class="hero-container" id="hero-container">
+
+    <!-- Loading State -->
+    <div id="loading" style="text-align:center; padding: 60px;">
+      <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #ED1D24;"></i>
+      <p style="margin-top: 20px; font-size: 1.2rem;">Loading hero...</p>
+    </div>
+
+    <!-- Error State (hidden by default) -->
+    <div id="error" style="display:none; text-align:center; padding: 60px;">
+      <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ED1D24;"></i>
+      <h2 style="margin-top: 20px;">Hero Not Found</h2>
+      <p style="margin-top: 10px;">We couldn't find that hero. Please go back home.</p>
+      <a href="index.html" style="display:inline-block; margin-top: 20px; padding: 12px 30px; background: #ED1D24; color: white; border-radius: 50px; text-decoration: none; font-weight: bold;">
+        <i class="fas fa-home"></i> Go Home
+      </a>
+    </div>
+
+    <!-- Hero Content (hidden until loaded) -->
+    <div id="hero-content" style="display:none;">
+
+      <div class="hero-header">
+        <h2 class="hero-name" id="hero-title"></h2>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-image">
+          <img id="hero-image" src="" alt="">
+        </div>
+
+        <div class="hero-details">
+          <!-- Bio Section -->
+          <div class="bio-section">
+            <h4><i class="fas fa-user"></i> Bio</h4>
+            <p><strong>Full Name:</strong> <span id="bio-fullName"></span></p>
+            <p><strong>Place of Birth:</strong> <span id="bio-placeOfBirth"></span></p>
+            <p><strong>Alignment:</strong> <span id="bio-alignment"></span></p>
+            <p><strong>Gender:</strong> <span id="bio-gender"></span></p>
+            <p><strong>Race:</strong> <span id="bio-race"></span></p>
+          </div>
+
+          <!-- Stats Section -->
+          <div class="stats-section">
+            <h4><i class="fas fa-chart-line"></i> Power Stats</h4>
+
+            <p>
+              <strong>Intelligence:</strong>
+              <span class="stat-value" id="stat-intelligence"></span>
+              <span class="stat-bar"><span class="stat-fill" id="fill-intelligence"></span></span>
+            </p>
+            <p>
+              <strong>Strength:</strong>
+              <span class="stat-value" id="stat-strength"></span>
+              <span class="stat-bar"><span class="stat-fill" id="fill-strength"></span></span>
+            </p>
+            <p>
+              <strong>Speed:</strong>
+              <span class="stat-value" id="stat-speed"></span>
+              <span class="stat-bar"><span class="stat-fill" id="fill-speed"></span></span>
+            </p>
+            <p>
+              <strong>Durability:</strong>
+              <span class="stat-value" id="stat-durability"></span>
+              <span class="stat-bar"><span class="stat-fill" id="fill-durability"></span></span>
+            </p>
+            <p>
+              <strong>Power:</strong>
+              <span class="stat-value" id="stat-power"></span>
+              <span class="stat-bar"><span class="stat-fill" id="fill-power"></span></span>
+            </p>
+            <p>
+              <strong>Combat:</strong>
+              <span class="stat-value" id="stat-combat"></span>
+              <span class="stat-bar"><span class="stat-fill" id="fill-combat"></span></span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Hero Button -->
+      <div class="next-btn" id="next-btn"></div>
+
+    </div>
+  </div>
+
+  <!-- Back to Top -->
+  <a href="#" class="back-to-top" id="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Footer -->
+  <footer>
+    <p>2025 Marvel Gallery | Created by TJ Killer</p>
+  </footer>
+
+  <script>
+    // =============================================
+    // STEP 1: Get the hero ID from the URL
+    // Example: hero.html?id=thor  →  heroId = "thor"
+    // =============================================
+    const params = new URLSearchParams(window.location.search);
+    const heroId = params.get('id');
+
+    // If no ID in URL, show error immediately
+    if (!heroId) {
+      showError();
+    } else {
+      loadHero(heroId);
+    }
+
+    // =============================================
+    // STEP 2: Load heroes.json and find the hero
+    // =============================================
+    async function loadHero(id) {
+      try {
+        const response = await fetch('heroes.json');
+        const data = await response.json();
+
+        // Find the hero that matches our ID
+        const hero = data.heroes.find(h => h.id === id);
+
+        if (!hero) {
+          showError();
+          return;
+        }
+
+        // Hero found — build the page
+        buildPage(hero, data.heroes);
+
+      } catch (err) {
+        console.error('Error loading heroes.json:', err);
+        showError();
+      }
+    }
+
+    // =============================================
+    // STEP 3: Build the page with hero data
+    // =============================================
+    function buildPage(hero, allHeroes) {
+
+      // --- Page title ---
+      document.title = hero.name + ' - Marvel Hero';
+
+      // --- Apply hero theme to body ---
+      document.body.className = hero.theme;
+
+      // --- Hero name and icon ---
+      document.getElementById('hero-title').innerHTML =
+        `<i class="${hero.icon}"></i> ${hero.name}`;
+
+      // --- Hero image ---
+      const img = document.getElementById('hero-image');
+      img.src = hero.image;
+      img.alt = hero.name;
+
+      // --- Bio fields ---
+      document.getElementById('bio-fullName').textContent = hero.bio.fullName;
+      document.getElementById('bio-placeOfBirth').textContent = hero.bio.placeOfBirth;
+      document.getElementById('bio-alignment').textContent = hero.bio.alignment;
+      document.getElementById('bio-gender').textContent = hero.bio.gender;
+      document.getElementById('bio-race').textContent = hero.bio.race;
+
+      // --- Stats ---
+      const statKeys = ['intelligence', 'strength', 'speed', 'durability', 'power', 'combat'];
+      statKeys.forEach(stat => {
+        const value = hero.stats[stat];
+        document.getElementById('stat-' + stat).textContent = value + '%';
+        // Animate the bar after a short delay
+        setTimeout(() => {
+          document.getElementById('fill-' + stat).style.width = value + '%';
+        }, 300);
+      });
+
+      // --- Next Hero Button ---
+      const nextBtn = document.getElementById('next-btn');
+      if (hero.next) {
+        // Find the next hero's name
+        const nextHero = allHeroes.find(h => h.id === hero.next);
+        nextBtn.innerHTML = `
+          <a href="hero.html?id=${hero.next}">
+            <i class="fas fa-arrow-right"></i> Next: ${nextHero ? nextHero.name : 'Next Hero'}
+          </a>`;
+      } else {
+        // Last hero — go back home
+        nextBtn.innerHTML = `
+          <a href="index.html">
+            <i class="fas fa-home"></i> Return Home
+          </a>`;
+      }
+
+      // --- Show the content, hide loading ---
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('hero-content').style.display = 'block';
+    }
+
+    // =============================================
+    // STEP 4: Error handler
+    // =============================================
+    function showError() {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').style.display = 'block';
+    }
+
+    // =============================================
+    // STEP 5: Back to top button
+    // =============================================
+    const backToTop = document.getElementById('back-to-top');
+
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.style.opacity = '1';
+        backToTop.style.visibility = 'visible';
+      } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.visibility = 'hidden';
+      }
+    });
+  </script>
+
+</body>
+</html>
