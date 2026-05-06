@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marvel Avengers Gallery - Explore Your Favorite Heroes</title>
-  <meta name="description" content="Discover detailed profiles, powers and stories of your favorite Marvel Avengers heroes in our comprehensive gallery.">
+  <meta name="description" content="Discover detailed profiles, powers and stories of your favorite Marvel Avengers heroes.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
-  <!-- Navigation -->
+
+  <!-- NAV -->
   <nav>
     <div class="nav-container">
       <a href="#" class="logo">⚡ Marvel Gallery</a>
@@ -28,7 +29,7 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- HERO BANNER -->
   <section id="home" class="hero-section">
     <div class="container">
       <h1>Marvel Avengers Gallery</h1>
@@ -38,11 +39,11 @@
   </section>
 
   <div class="container">
-    <!-- Welcome Section -->
+
+    <!-- WELCOME -->
     <section class="welcome-section fade-in">
       <h2>Welcome to the Marvel Universe</h2>
-      <p>Dive deep into the world of Marvel's most iconic superheroes. Our comprehensive gallery features detailed character profiles, power statistics, origin stories and stunning visuals that bring these legendary heroes to life.</p>
-      
+      <p>Dive deep into the world of Marvel's most iconic superheroes. Our comprehensive gallery features detailed character profiles, power statistics, origin stories and stunning visuals.</p>
       <div class="features">
         <div class="feature-card">
           <div class="feature-icon">🦸‍♂️</div>
@@ -62,7 +63,7 @@
       </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- GALLERY — loaded from Supabase -->
     <section id="gallery" class="gallery-section">
       <h2>Meet the Heroes</h2>
       <div class="gallery">
@@ -71,7 +72,7 @@
           <div class="hero-info">
             <h3>Thor</h3>
             <p>The mighty God of Thunder from Asgard, wielding the enchanted hammer Mjolnir with incredible strength and lightning powers.</p>
-            <a href="hero.html?id=thor" class="explore-btn">Explore Profile</a>
+            <a href="avengerOne.html" class="explore-btn">Explore Profile</a>
           </div>
         </div>
         
@@ -80,7 +81,7 @@
           <div class="hero-info">
             <h3>Iron Man</h3>
             <p>Tony Stark, the genius billionaire philanthropist in his high-tech armor suit, protecting the world with innovation.</p>
-            <a href="hero.html?id=ironman" class="explore-btn">Explore Profile</a>
+            <a href="avengerTwo.html" class="explore-btn">Explore Profile</a>
           </div>
         </div>
         
@@ -89,7 +90,7 @@
           <div class="hero-info">
             <h3>Captain America</h3>
             <p>Steve Rogers, the First Avenger with enhanced abilities and an unbreakable shield, leading with honor and courage.</p>
-            <a href="hero.html?id=captainamerica" class="explore-btn">Explore Profile</a>
+            <a href="avengerFive.html" class="explore-btn">Explore Profile</a>
           </div>
         </div>
         
@@ -98,7 +99,7 @@
           <div class="hero-info">
             <h3>The Hulk</h3>
             <p>Dr. Bruce Banner transforms into the incredible green giant with limitless strength and near invulnerability.</p>
-            <a href="hero.html?id=hulk" class="explore-btn">Explore Profile</a>
+            <a href="avengerThree.html" class="explore-btn">Explore Profile</a>
           </div>
         </div>
         
@@ -107,7 +108,7 @@
           <div class="hero-info">
             <h3>Black Widow</h3>
             <p>Natasha Romanoff, the master spy and assassin with unmatched combat skills and tactical intelligence.</p>
-            <a href="hero.html?id=blackwidow" class="explore-btn">Explore Profile</a>
+            <a href="avengerSix.html" class="explore-btn">Explore Profile</a>
           </div>
         </div>
         
@@ -116,18 +117,18 @@
           <div class="hero-info">
             <h3>Hawkeye</h3>
             <p>Clint Barton, the master archer with perfect aim and an arsenal of specialized arrows for any situation.</p>
-            <a href="hero.html?id=hawkeye" class="explore-btn">Explore Profile</a>
+            <a href="AvengerFour.html" class="explore-btn">Explore Profile</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ABOUT -->
     <section id="about" class="about-section">
       <div class="about-content">
         <div class="about-text">
           <h2>About Marvel Gallery</h2>
-          <p>We are passionate Marvel fans dedicated to creating the ultimate resource for exploring your favorite superheroes. Our mission is to provide comprehensive, accurate and engaging content about the characters that have captured imaginations for generations.</p>
+          <p>We are passionate Marvel fans dedicated to creating the ultimate resource for exploring your favorite superheroes. Our mission is to provide comprehensive, accurate and engaging content about characters that have captured imaginations for generations.</p>
           <p>From the cosmic powers of Thor to the technological genius of Iron Man, we cover every aspect of what makes these heroes extraordinary.</p>
         </div>
         <div class="stats-grid">
@@ -151,44 +152,41 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- CONTACT -->
     <section id="contact" class="contact-section">
       <h2>Get in Touch</h2>
-      <p style="text-align: center; margin-bottom: 30px; color: #666;">Have questions, feedback or character suggestions? We would love to hear from you!</p>
-      
+      <p>Have questions, feedback or character suggestions? We'd love to hear from you!</p>
       <div class="contact-grid">
         <div class="contact-card">
           <div class="contact-icon">📧</div>
           <h4>Email Us</h4>
-          <p><a href="mailto:hello@marvelgallery.com" class="social-link">thato.john1605</a></p>
-          <p style="font-size: 0.9rem; color: #888;">We respond within 24 hours</p>
+          <p><a href="mailto:thato.john1605@gmail.com" class="social-link">thato.john1605</a></p>
+          <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">We respond within 24 hours</p>
         </div>
-        
         <div class="contact-card">
           <div class="contact-icon">📱</div>
           <h4>Follow Us</h4>
           <p><a href="#" class="social-link">@tjkiller_rsa</a></p>
-          <p style="font-size: 0.9rem; color: #888;">Latest updates & hero spotlights</p>
+          <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">Latest updates & hero spotlights</p>
         </div>
-        
         <div class="contact-card">
           <div class="contact-icon">💬</div>
           <h4>Community</h4>
           <p><a href="#" class="social-link">Join our Discord</a></p>
-          <p style="font-size: 0.9rem; color: #888;">Connect with fellow fans</p>
+          <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">Connect with fellow fans</p>
         </div>
-        
         <div class="contact-card">
           <div class="contact-icon">🛠️</div>
           <h4>Support</h4>
           <p><a href="#" class="social-link">Help Center</a></p>
-          <p style="font-size: 0.9rem; color: #888;">Technical support & FAQs</p>
+          <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">Technical support & FAQs</p>
         </div>
       </div>
     </section>
+
   </div>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
       <div class="footer-links">
@@ -200,21 +198,100 @@
         <a href="#">Terms of Service</a>
       </div>
       <p>&copy; 2025 Marvel Gallery. Created with ❤️ for Marvel fans worldwide.</p>
-      <p style="font-size: 0.9rem; color: #ccc; margin-top: 10px;">
-        This is a fan made website. Marvel characters are property of Marvel Entertainment.
-      </p>
+      <p>This is a fan made website. Marvel characters are property of Marvel Entertainment.</p>
     </div>
   </footer>
 
   <script>
-    // Theme Toggle Functionality
+    // ── SUPABASE ──
+    const SUPABASE_URL = 'https://zxhubiaitwrkyxoiojei.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4aHViaWFpdHdya3l4b2lvamVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5OTY2ODksImV4cCI6MjA5MzU3MjY4OX0.4v-vO3JA2jAU1ItSRHFOoZDfAjHEFmkuiPhDBy7ljiU';
+    const HEADERS = {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json'
+    };
+
+    // ── LOAD GALLERY ──
+    async function loadGallery() {
+      try {
+        const res    = await fetch(
+          `${SUPABASE_URL}/rest/v1/heroes?select=id,name,title,image,description&order=display_order.asc`,
+          { headers: HEADERS }
+        );
+        const heroes = await res.json();
+
+        if (!heroes || heroes.length === 0) {
+          show('gallery-error'); hide('gallery-loading'); return;
+        }
+
+        const grid = document.getElementById('gallery-grid');
+        grid.innerHTML = heroes.map(h => `
+          <div class="hero-card">
+            <img src="${h.image}" alt="${h.name}" loading="lazy"
+              onerror="this.style.background='#1a1a1a'; this.style.minHeight='210px'">
+            <div class="hero-info">
+              <h3>${h.name}</h3>
+              <p>${h.description || ''}</p>
+              <a href="hero.html?id=${h.id}" class="explore-btn">
+                <i class="fas fa-eye"></i> Explore Profile
+              </a>
+            </div>
+          </div>
+        `).join('');
+
+        hide('gallery-loading');
+        document.getElementById('gallery-grid').style.display = 'grid';
+
+        attachAnimations();
+
+      } catch (err) {
+        console.error('Gallery error:', err);
+        show('gallery-error'); hide('gallery-loading');
+      }
+    }
+
+    loadGallery();
+
+    function show(id) { document.getElementById(id).style.display = 'block'; }
+    function hide(id) { document.getElementById(id).style.display = 'none'; }
+
+    // ── CARD ANIMATIONS ──
+    function attachAnimations() {
+      document.querySelectorAll('.explore-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = this.getAttribute('href');
+          this.innerHTML = '<span class="loading"></span> Loading...';
+          setTimeout(() => { window.location.href = target; }, 700);
+        });
+      });
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.opacity   = '1';
+            e.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.08 });
+
+      document.querySelectorAll('.hero-card').forEach(el => {
+        el.style.opacity   = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+      });
+    }
+
+    // ── THEME TOGGLE ──
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.querySelector('.theme-icon');
     const body = document.body;
 
     // Check for saved theme preference or default to 'light'
     const currentTheme = localStorage.getItem('theme') || 'light';
-    body.dataset.theme = currentTheme;
+    body.setAttribute('data-theme', currentTheme);
     
     // Update icon based on current theme
     function updateThemeIcon(theme) {
@@ -225,10 +302,10 @@
 
     // Theme toggle event listener
     themeToggle.addEventListener('click', () => {
-      const currentTheme = body.dataset.theme;
+      const currentTheme = body.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       
-      body.dataset.theme = newTheme;
+      body.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
       updateThemeIcon(newTheme);
       
@@ -239,29 +316,28 @@
       }, 150);
     });
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    // ── SMOOTH SCROLL ──
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
-    // Add loading animation when clicking hero cards and navigate to specific hero page
+       // Add loading animation when clicking hero cards and navigate to specific hero page
     document.querySelectorAll('.explore-btn').forEach(btn => {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
-        const targetPage = this.getAttribute('href');
+        const originalText = this.textContent;
+        const targetPage = this.getAttribute('href'); // Get the href from the link
+        
         this.innerHTML = '<span class="loading"></span> Loading...';
+        
+        // After a short delay, navigate to the specific hero page
         setTimeout(() => {
-          globalThis.location.href = targetPage;
-        }, 800);
+          window.location.href = targetPage;
+        }, 1000);
       });
     });
 
@@ -278,14 +354,13 @@
           entry.target.style.transform = 'translateY(0)';
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.08 });
 
-    // Observe all cards and sections
-    document.querySelectorAll('.hero-card, .feature-card, .contact-card').forEach(el => {
-      el.style.opacity = '0';
+    document.querySelectorAll('.feature-card, .contact-card').forEach(el => {
+      el.style.opacity   = '0';
       el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      staticObs.observe(el);
     });
 
     // Marvel-style particle effect (optional enhancement)
@@ -316,7 +391,7 @@
         
         setTimeout(() => {
           if (particle.parentNode) {
-            particle.remove();
+            particle.parentNode.removeChild(particle);
           }
         }, 2000);
       }, 100);

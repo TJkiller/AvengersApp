@@ -1,0 +1,190 @@
+{
+  "heroes": [
+    {
+      "id": "thor",
+      "name": "Thor",
+      "title": "God of Thunder",
+      "file": "avengerOne.html",
+      "image": "images/avengers_01.jpg",
+      "theme": "theme-thor",
+      "icon": "fas fa-bolt",
+      "next": "ironman",
+      "bio": {
+        "fullName": "Thor Odinson",
+        "placeOfBirth": "Asgard",
+        "alignment": "Good",
+        "gender": "Male",
+        "race": "Asgardian"
+      },
+      "stats": {
+        "intelligence": 69,
+        "strength": 100,
+        "speed": 92,
+        "durability": 100,
+        "power": 100,
+        "combat": 85
+      },
+      "description": "The mighty God of Thunder from Asgard, wielding the enchanted hammer Mjolnir with incredible strength and lightning powers.",
+      "colors": {
+        "primary": "#7B7B7B",
+        "secondary": "#D4AF37",
+        "accent": "#2A4B8D"
+      }
+    },
+    {
+      "id": "ironman",
+      "name": "Iron Man",
+      "title": "Genius Billionaire",
+      "file": "avengerTwo.html",
+      "image": "images/avengers_02.jpg",
+      "theme": "theme-ironman",
+      "icon": "fas fa-rocket",
+      "next": "hulk",
+      "bio": {
+        "fullName": "Tony Stark",
+        "placeOfBirth": "Long Island, New York",
+        "alignment": "Good",
+        "gender": "Male",
+        "race": "Human"
+      },
+      "stats": {
+        "intelligence": 100,
+        "strength": 85,
+        "speed": 60,
+        "durability": 90,
+        "power": 95,
+        "combat": 80
+      },
+      "description": "Tony Stark, the genius billionaire philanthropist in his high-tech armor suit, protecting the world with innovation.",
+      "colors": {
+        "primary": "#B22222",
+        "secondary": "#FF8C00",
+        "accent": "#FFD700"
+      }
+    },
+    {
+      "id": "hulk",
+      "name": "Hulk",
+      "title": "The Incredible",
+      "file": "avengerThree.html",
+      "image": "images/avengers_03.jpg",
+      "theme": "theme-hulk",
+      "icon": "fas fa-fist-raised",
+      "next": "hawkeye",
+      "bio": {
+        "fullName": "Bruce Banner",
+        "placeOfBirth": "Ohio",
+        "alignment": "Good",
+        "gender": "Male",
+        "race": "Human (Radiation)"
+      },
+      "stats": {
+        "intelligence": 88,
+        "strength": 100,
+        "speed": 47,
+        "durability": 100,
+        "power": 52,
+        "combat": 85
+      },
+      "description": "Dr. Bruce Banner transforms into the incredible green giant with limitless strength and near invulnerability.",
+      "colors": {
+        "primary": "#228B22",
+        "secondary": "#3CB371",
+        "accent": "#8B4513"
+      }
+    },
+    {
+      "id": "hawkeye",
+      "name": "Hawkeye",
+      "title": "Master Archer",
+      "file": "AvengerFour.html",
+      "image": "images/avengers_04.jpg",
+      "theme": "theme-hawkeye",
+      "icon": "fas fa-bullseye",
+      "next": "captainamerica",
+      "bio": {
+        "fullName": "Clinton Barton",
+        "placeOfBirth": "Iowa",
+        "alignment": "Good",
+        "gender": "Male",
+        "race": "Human"
+      },
+      "stats": {
+        "intelligence": 50,
+        "strength": 12,
+        "speed": 23,
+        "durability": 14,
+        "power": 26,
+        "combat": 80
+      },
+      "description": "Clint Barton, the master archer with perfect aim and an arsenal of specialized arrows for any situation.",
+      "colors": {
+        "primary": "#4B0082",
+        "secondary": "#9370DB",
+        "accent": "#000000"
+      }
+    },
+    {
+      "id": "captainamerica",
+      "name": "Captain America",
+      "title": "The First Avenger",
+      "file": "avengerFive.html",
+      "image": "images/avengers_05.jpg",
+      "theme": "theme-captainamerica",
+      "icon": "fas fa-shield-alt",
+      "next": "blackwidow",
+      "bio": {
+        "fullName": "Steve Rogers",
+        "placeOfBirth": "America",
+        "alignment": "Good",
+        "gender": "Male",
+        "race": "Human"
+      },
+      "stats": {
+        "intelligence": 63,
+        "strength": 19,
+        "speed": 35,
+        "durability": 56,
+        "power": 55,
+        "combat": 100
+      },
+      "description": "Steve Rogers, the First Avenger with enhanced abilities and an unbreakable shield, leading with honor and courage.",
+      "colors": {
+        "primary": "#0D47A1",
+        "secondary": "#B22222",
+        "accent": "#FFFFFF"
+      }
+    },
+    {
+      "id": "blackwidow",
+      "name": "Black Widow",
+      "title": "Master Spy",
+      "file": "avengerSix.html",
+      "image": "images/avengers_06.jpg",
+      "theme": "theme-blackwidow",
+      "icon": "fas fa-spider",
+      "next": null,
+      "bio": {
+        "fullName": "Natalia Romanova",
+        "placeOfBirth": "Russia",
+        "alignment": "Good",
+        "gender": "Female",
+        "race": "Human"
+      },
+      "stats": {
+        "intelligence": 75,
+        "strength": 13,
+        "speed": 27,
+        "durability": 32,
+        "power": 39,
+        "combat": 100
+      },
+      "description": "Natasha Romanoff, the master spy and assassin with unmatched combat skills and tactical intelligence.",
+      "colors": {
+        "primary": "#000000",
+        "secondary": "#B22222",
+        "accent": "#D4AF37"
+      }
+    }
+  ]
+}
