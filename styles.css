@@ -5,10 +5,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap');
 
-/* ── CSS VARIABLES ── */
-/* ── CSS VARIABLES (MARVEL THEME) ── */
+/* ── CSS VARIABLES (Marvel Theme) ── */
 :root {
-  /* Light Mode (Default) */
   --primary-red:    #ED1D24;
   --dark-red:       #B22222;
   --primary-blue:   #0078D4;
@@ -16,8 +14,8 @@
   --marvel-silver:  #C0C0C0;
 
   --card-bg:        #ffffff;
-  --text-primary:   #2c3e50;
-  --text-secondary: #666666;
+  --text-primary:   #1a1a2e;
+  --text-secondary: #555555;
   --text-muted:     #888888;
   --border-color:   #e1e8ed;
   --hover-bg:       #f8f9fa;
@@ -37,27 +35,19 @@
 
 /* ── DARK THEME ── */
 [data-theme="dark"] {
-  --primary-red:    #ED1D24;
-  --dark-red:       #B22222;
-  --primary-blue:   #0078D4;
-  --marvel-gold:    #FFD700;
-  --marvel-silver:  #C0C0C0;
-
   --card-bg:        #1e1e1e;
-  --text-primary:   #ffffff;
-  --text-secondary: #cccccc;
-  --text-muted:     #aaaaaa;
-  --border-color:   #404040;
+  --text-primary:   #f0f0f0;
+  --text-secondary: #bbbbbb;
+  --text-muted:     #888888;
+  --border-color:   #333333;
   --hover-bg:       #2a2a2a;
-
   --nav-bg:         rgba(26, 26, 26, 0.95);
   --footer-bg:      rgba(26, 26, 26, 0.95);
   --page-bg:        linear-gradient(135deg, #1a1a1a 0%, #2c1810 50%, #1f1f1f 100%);
-
   --shadow-sm:      0 4px 15px rgba(0,0,0,0.3);
   --shadow-md:      0 8px 30px rgba(0,0,0,0.4);
-  --shadow-lg:      0 15px 50px rgba(0,0,0,0.5);
 }
+
 /* ── RESET ── */
 *, *::before, *::after {
   margin: 0;
@@ -83,7 +73,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
   border-bottom: 2px solid var(--primary-red);
 }
 
@@ -158,7 +148,7 @@ nav {
 /* ── HERO BANNER ── */
 .hero-section {
   text-align: center;
-  padding: 90px 20px 80px;
+  padding: 80px 20px;
   position: relative;
   overflow: hidden;
 }
@@ -168,7 +158,7 @@ nav {
   position: absolute;
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(80px, 20vw, 260px);
-  color: rgba(237,29,36,0.04);
+  color: rgba(237,29,36,0.08);
   letter-spacing: -5px;
   top: 50%;
   left: 50%;
@@ -191,7 +181,7 @@ nav {
 
 .hero-section p {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.85);
   margin-bottom: 32px;
   max-width: 600px;
   margin-left: auto;
@@ -252,7 +242,7 @@ nav {
   text-align: center;
 }
 
-/* ── WELCOME ── */
+/* ── WELCOME SECTION ── */
 .welcome-section { text-align: center; }
 .welcome-section > p {
   color: var(--text-secondary);
@@ -297,7 +287,7 @@ nav {
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 25px;
 }
 
 /* ── HERO CARD ── */
@@ -320,17 +310,17 @@ nav {
 
 .hero-card img {
   width: 100%;
-  height: 210px;
+  height: 260px;
   object-fit: cover;
   object-position: center top;
   display: block;
   transition: transform 0.4s ease;
 }
 
-.hero-card:hover img { transform: scale(1.06); }
+.hero-card:hover img { transform: scale(1.05); }
 
 .hero-info {
-  padding: 16px 18px 20px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -338,16 +328,19 @@ nav {
 
 .hero-info h3 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   letter-spacing: 2px;
   color: var(--primary-red);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hero-info p {
   color: var(--text-secondary);
-  font-size: 0.875rem;
-  line-height: 1.55;
+  font-size: 0.85rem;
+  line-height: 1.5;
   flex: 1;
   margin-bottom: 14px;
   display: -webkit-box;
@@ -357,13 +350,15 @@ nav {
 }
 
 .explore-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: var(--primary-red);
   color: white;
-  padding: 8px 20px;
+  padding: 8px 18px;
   border-radius: 50px;
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
@@ -378,7 +373,7 @@ nav {
   box-shadow: 0 4px 15px rgba(237,29,36,0.35);
 }
 
-/* ── ABOUT ── */
+/* ── ABOUT SECTION ── */
 .about-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -430,14 +425,14 @@ nav {
 }
 
 .stat-label {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-top: 6px;
 }
 
-/* ── CONTACT ── */
+/* ── CONTACT SECTION ── */
 .contact-section > p {
   text-align: center;
   color: var(--text-secondary);
@@ -447,7 +442,7 @@ nav {
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 20px;
 }
 
 .contact-card {
@@ -466,7 +461,6 @@ nav {
 }
 
 .contact-icon { font-size: 2rem; margin-bottom: 12px; }
-
 .contact-card h4 {
   color: var(--text-primary);
   font-size: 0.9rem;
@@ -475,7 +469,6 @@ nav {
   letter-spacing: 1px;
   margin-bottom: 8px;
 }
-
 .contact-card p { color: var(--text-secondary); font-size: 0.85rem; }
 
 .social-link {
@@ -508,7 +501,7 @@ footer {
 .footer-links a {
   color: var(--marvel-silver);
   text-decoration: none;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: color 0.2s;
@@ -517,11 +510,11 @@ footer {
 
 .footer-content p {
   color: rgba(255,255,255,0.45);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   margin-top: 8px;
 }
 
-/* ── LOADING SPINNER ── */
+/* ── LOADING ANIMATION ── */
 .loading {
   display: inline-block;
   width: 16px;
@@ -534,14 +527,13 @@ footer {
   margin-right: 6px;
 }
 
-/* ── ANIMATIONS ── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(25px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 .fade-in { animation: fadeInUp 0.7s ease-out; }
@@ -561,10 +553,9 @@ footer {
    MOBILE — max 768px
 ══════════════════════════════ */
 @media (max-width: 768px) {
-  /* Hide nav links — just logo + toggle */
   .nav-links { display: none; }
   .nav-container { height: 58px; }
-  .logo { font-size: 1.25rem; }
+  .logo { font-size: 1.3rem; }
 
   .hero-section { padding: 55px 16px 45px; }
 
@@ -576,14 +567,15 @@ footer {
     margin-bottom: 20px;
   }
 
-  /* 1 column on mobile */
   .features       { grid-template-columns: 1fr; gap: 12px; }
-  .gallery        { grid-template-columns: 1fr; gap: 16px; }
+  .gallery        { grid-template-columns: 1fr; gap: 18px; }
   .contact-grid   { grid-template-columns: 1fr; gap: 12px; }
-  .about-content  { grid-template-columns: 1fr; }
   .stats-grid     { grid-template-columns: repeat(2, 1fr); }
 
-  .hero-card img  { height: 190px; }
+  .hero-card img  { height: 220px; }
+  .hero-info h3   { font-size: 1.2rem; white-space: normal; }
+  .hero-info p    { -webkit-line-clamp: 2; }
+  
   .footer-links   { gap: 8px 14px; }
 }
 
@@ -591,13 +583,10 @@ footer {
    SMALL MOBILE — max 480px
 ══════════════════════════════ */
 @media (max-width: 480px) {
-  .container { padding: 0 12px 40px; }
+  .container { padding: 0 15px 40px; }
   .cta-button { padding: 12px 26px; font-size: 1rem; }
-
-  .welcome-section h2,
-  .gallery-section h2,
-  .contact-section h2 {
-    font-size: 1.5rem;
-    letter-spacing: 2px;
-  }
+  .hero-card img { height: 190px; }
+  .hero-info h3 { font-size: 1.1rem; }
+  .hero-info p { font-size: 0.8rem; }
+  .explore-btn { padding: 6px 14px; font-size: 0.7rem; }
 }
