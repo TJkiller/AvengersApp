@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marvel Avengers Gallery - Explore Your Favorite Heroes</title>
-  <meta name="description" content="Discover detailed profiles, powers and stories of your favorite Marvel Avengers heroes in our comprehensive gallery.">
+  <meta name="description" content="Discover detailed profiles, powers and stories of your favorite Marvel Avengers heroes.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
-  <!-- Navigation -->
+
+  <!-- NAV -->
   <nav>
     <div class="nav-container">
       <a href="#" class="logo">⚡ Marvel Gallery</a>
@@ -28,7 +29,7 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- HERO BANNER -->
   <section id="home" class="hero-section">
     <div class="container">
       <h1>Marvel Avengers Gallery</h1>
@@ -38,11 +39,11 @@
   </section>
 
   <div class="container">
-    <!-- Welcome Section -->
+
+    <!-- WELCOME -->
     <section class="welcome-section fade-in">
       <h2>Welcome to the Marvel Universe</h2>
-      <p>Dive deep into the world of Marvel's most iconic superheroes. Our comprehensive gallery features detailed character profiles, power statistics, origin stories and stunning visuals that bring these legendary heroes to life.</p>
-      
+      <p>Dive deep into the world of Marvel's most iconic superheroes. Our comprehensive gallery features detailed character profiles, power statistics, origin stories and stunning visuals.</p>
       <div class="features">
         <div class="feature-card">
           <div class="feature-icon">🦸‍♂️</div>
@@ -62,32 +63,29 @@
       </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- GALLERY — loaded from Supabase -->
     <section id="gallery" class="gallery-section">
       <h2>Meet the Heroes</h2>
 
-      <!-- Loading state -->
-      <div id="gallery-loading" style="text-align:center; padding: 40px;">
-        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #ED1D24;"></i>
-        <p style="margin-top: 15px;">Loading heroes...</p>
+      <div id="gallery-loading" style="text-align:center; padding:50px 20px;">
+        <i class="fas fa-spinner fa-spin" style="font-size:2.5rem; color:#ED1D24;"></i>
+        <p style="margin-top:14px; color:#666;">Assembling the team...</p>
       </div>
 
-      <!-- Hero cards go here dynamically -->
       <div class="gallery" id="gallery-grid" style="display:none;"></div>
 
-      <!-- Error state -->
-      <div id="gallery-error" style="display:none; text-align:center; padding: 40px;">
-        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #ED1D24;"></i>
-        <p style="margin-top: 15px;">Could not load heroes. Please refresh the page.</p>
+      <div id="gallery-error" style="display:none; text-align:center; padding:50px 20px;">
+        <i class="fas fa-exclamation-triangle" style="font-size:2rem; color:#ED1D24;"></i>
+        <p style="margin-top:14px; color:#666;">Could not load heroes. Please refresh the page.</p>
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ABOUT -->
     <section id="about" class="about-section">
       <div class="about-content">
         <div class="about-text">
           <h2>About Marvel Gallery</h2>
-          <p>We are passionate Marvel fans dedicated to creating the ultimate resource for exploring your favorite superheroes. Our mission is to provide comprehensive, accurate and engaging content about the characters that have captured imaginations for generations.</p>
+          <p>We are passionate Marvel fans dedicated to creating the ultimate resource for exploring your favorite superheroes. Our mission is to provide comprehensive, accurate and engaging content about characters that have captured imaginations for generations.</p>
           <p>From the cosmic powers of Thor to the technological genius of Iron Man, we cover every aspect of what makes these heroes extraordinary.</p>
         </div>
         <div class="stats-grid">
@@ -111,44 +109,41 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- CONTACT -->
     <section id="contact" class="contact-section">
       <h2>Get in Touch</h2>
-      <p style="text-align: center; margin-bottom: 30px; color: #666;">Have questions, feedback or character suggestions? We would love to hear from you!</p>
-      
+      <p>Have questions, feedback or character suggestions? We'd love to hear from you!</p>
       <div class="contact-grid">
         <div class="contact-card">
           <div class="contact-icon">📧</div>
           <h4>Email Us</h4>
-          <p><a href="mailto:hello@marvelgallery.com" class="social-link">thato.john1605</a></p>
-          <p style="font-size: 0.9rem; color: #888;">We respond within 24 hours</p>
+          <p><a href="mailto:thato.john1605@gmail.com" class="social-link">thato.john1605</a></p>
+          <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">We respond within 24 hours</p>
         </div>
-        
         <div class="contact-card">
           <div class="contact-icon">📱</div>
           <h4>Follow Us</h4>
           <p><a href="#" class="social-link">@tjkiller_rsa</a></p>
-          <p style="font-size: 0.9rem; color: #888;">Latest updates & hero spotlights</p>
+          <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">Latest updates & hero spotlights</p>
         </div>
-        
         <div class="contact-card">
           <div class="contact-icon">💬</div>
           <h4>Community</h4>
           <p><a href="#" class="social-link">Join our Discord</a></p>
-          <p style="font-size: 0.9rem; color: #888;">Connect with fellow fans</p>
+          <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">Connect with fellow fans</p>
         </div>
-        
         <div class="contact-card">
           <div class="contact-icon">🛠️</div>
           <h4>Support</h4>
           <p><a href="#" class="social-link">Help Center</a></p>
-          <p style="font-size: 0.9rem; color: #888;">Technical support & FAQs</p>
+          <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">Technical support & FAQs</p>
         </div>
       </div>
     </section>
+
   </div>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
       <div class="footer-links">
@@ -160,160 +155,155 @@
         <a href="#">Terms of Service</a>
       </div>
       <p>&copy; 2025 Marvel Gallery. Created with ❤️ for Marvel fans worldwide.</p>
-      <p style="font-size: 0.9rem; color: #ccc; margin-top: 10px;">
-        This is a fan made website. Marvel characters are property of Marvel Entertainment.
-      </p>
+      <p>This is a fan made website. Marvel characters are property of Marvel Entertainment.</p>
     </div>
   </footer>
 
   <script>
-    // =============================================
-    // SUPABASE CONFIG
-    // =============================================
+    // ── SUPABASE ──
     const SUPABASE_URL = 'https://zxhubiaitwrkyxoiojei.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4aHViaWFpdHdya3l4b2lvamVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5OTY2ODksImV4cCI6MjA5MzU3MjY4OX0.4v-vO3JA2jAU1ItSRHFOoZDfAjHEFmkuiPhDBy7ljiU';
+    const HEADERS = {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json'
+    };
 
-    // =============================================
-    // LOAD HEROES FROM SUPABASE INTO GALLERY
-    // =============================================
+    // ── LOAD GALLERY ──
     async function loadGallery() {
       try {
-        const response = await fetch(
+        const res    = await fetch(
           `${SUPABASE_URL}/rest/v1/heroes?select=id,name,title,image,description&order=display_order.asc`,
-          {
-          headers: {
-                'apikey': SUPABASE_KEY,
-                'Authorization': `Bearer ${SUPABASE_KEY}`,
-                'Content-Type': 'application/json'  // ← ADD THIS
-              }
-          }
+          { headers: HEADERS }
         );
-
-        const heroes = await response.json();
+        const heroes = await res.json();
 
         if (!heroes || heroes.length === 0) {
-          document.getElementById('gallery-loading').style.display = 'none';
-          document.getElementById('gallery-error').style.display = 'block';
-          return;
+          show('gallery-error'); hide('gallery-loading'); return;
         }
 
-        // Build a card for each hero
         const grid = document.getElementById('gallery-grid');
-        grid.innerHTML = heroes.map(hero => `
+        grid.innerHTML = heroes.map(h => `
           <div class="hero-card">
-            <img src="${hero.image}" alt="${hero.name} - ${hero.title}" loading="lazy" />
+            <img src="${h.image}" alt="${h.name}" loading="lazy"
+              onerror="this.style.background='#1a1a1a'; this.style.minHeight='210px'">
             <div class="hero-info">
-              <h3>${hero.name}</h3>
-              <p>${hero.description}</p>
-              <a href="hero.html?id=${hero.id}" class="explore-btn">Explore Profile</a>
+              <h3>${h.name}</h3>
+              <p>${h.description || ''}</p>
+              <a href="hero.html?id=${h.id}" class="explore-btn">
+                <i class="fas fa-eye"></i> Explore Profile
+              </a>
             </div>
           </div>
         `).join('');
 
-        // Hide loading, show grid
-        document.getElementById('gallery-loading').style.display = 'none';
-        document.getElementById('gallery-grid').style.display = 'flex';
+        hide('gallery-loading');
+        document.getElementById('gallery-grid').style.display = 'grid';
 
-        // Attach animations to the new cards
-        attachCardAnimations();
+        attachAnimations();
 
       } catch (err) {
-        console.error('Error loading gallery:', err);
-        document.getElementById('gallery-loading').style.display = 'none';
-        document.getElementById('gallery-error').style.display = 'block';
+        console.error('Gallery error:', err);
+        show('gallery-error'); hide('gallery-loading');
       }
     }
 
     loadGallery();
 
-    // =============================================
-    // THEME TOGGLE
-    // =============================================
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.querySelector('.theme-icon');
-    const body = document.body;
+    function show(id) { document.getElementById(id).style.display = 'block'; }
+    function hide(id) { document.getElementById(id).style.display = 'none'; }
 
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    body.dataset.theme = currentTheme;
-    
-    // Update icon based on current theme
-    function updateThemeIcon(theme) {
-      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    // ── CARD ANIMATIONS ──
+    function attachAnimations() {
+      document.querySelectorAll('.explore-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = this.getAttribute('href');
+          this.innerHTML = '<span class="loading"></span> Loading...';
+          setTimeout(() => { window.location.href = target; }, 700);
+        });
+      });
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.opacity   = '1';
+            e.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.08 });
+
+      document.querySelectorAll('.hero-card').forEach(el => {
+        el.style.opacity   = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+      });
     }
-    updateThemeIcon(currentTheme);
+
+    // ── THEME TOGGLE ──
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon   = document.querySelector('.theme-icon');
+
+    const savedTheme  = localStorage.getItem('theme') || 'light';
+    document.body.dataset.theme = savedTheme;
+    themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
     themeToggle.addEventListener('click', () => {
-      const currentTheme = body.dataset.theme;
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      body.dataset.theme = newTheme;
-      localStorage.setItem('theme', newTheme);
-      updateThemeIcon(newTheme);
-      themeToggle.style.transform = 'scale(0.9)';
-      setTimeout(() => { themeToggle.style.transform = 'scale(1)'; }, 150);
+      const next = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.body.dataset.theme = next;
+      localStorage.setItem('theme', next);
+      themeIcon.textContent = next === 'dark' ? '☀️' : '🌙';
+      themeToggle.style.transform = 'scale(0.88)';
+      setTimeout(() => { themeToggle.style.transform = ''; }, 150);
     });
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+    // ── SMOOTH SCROLL ──
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
-    // Add loading animation when clicking hero cards and navigate to specific hero page
-    document.querySelectorAll('.explore-btn').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetPage = this.getAttribute('href');
-        this.innerHTML = '<span class="loading"></span> Loading...';
-        setTimeout(() => {
-          window.location.href = targetPage;
-        }, 800);
-      });
-    });
-
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+    // ── STATIC CARD FADE-IN ──
+    const staticObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity   = '1';
+          e.target.style.transform = 'translateY(0)';
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.08 });
 
-    // Observe all cards and sections
-    document.querySelectorAll('.hero-card, .feature-card, .contact-card').forEach(el => {
-      el.style.opacity = '0';
+    document.querySelectorAll('.feature-card, .contact-card').forEach(el => {
+      el.style.opacity   = '0';
       el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      staticObs.observe(el);
     });
 
-    // Marvel-style particle effect (optional enhancement)
-    function createParticle() {
-      const particle = document.createElement('div');
-      particle.style.cssText = `position:fixed;width:4px;height:4px;background:var(--marvel-gold);border-radius:50%;pointer-events:none;z-index:999;opacity:0.7;left:${Math.random()*window.innerWidth}px;top:${Math.random()*window.innerHeight}px`;
-      document.body.appendChild(particle);
-      setTimeout(() => {
-        particle.style.transition = 'opacity 2s ease, transform 2s ease';
-        particle.style.opacity = '0';
-        particle.style.transform = 'translateY(-50px)';
-        setTimeout(() => { if (particle.parentNode) particle.remove(); }, 2000);
-      }, 100);
-    }
-    setInterval(createParticle, 3000);
+    // ── PARTICLES ──
+   function createParticle() {
+  const p = document.createElement('div');
+  const isDark = document.body.dataset.theme === 'dark';
+  p.style.cssText = `
+    position:fixed; width:3px; height:3px;
+    background:${isDark ? '#FFD700' : '#ED1D24'};
+    border-radius:50%;
+    pointer-events:none; z-index:9999; opacity:0.5;
+    left:${Math.random()*100}vw; top:${Math.random()*100}vh;
+  `;
+  document.body.appendChild(p);
+  setTimeout(() => {
+    p.style.transition = 'opacity 2s ease, transform 2s ease';
+    p.style.opacity = '0';
+    p.style.transform = 'translateY(-40px)';
+    setTimeout(() => p.remove(), 2000);
+  }, 100);
+}
+    setInterval(createParticle, 3500);
   </script>
 </body>
 </html>

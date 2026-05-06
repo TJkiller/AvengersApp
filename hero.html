@@ -6,6 +6,7 @@
   <title>Marvel Hero</title>
   <link rel="stylesheet" href="stylesTwo.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 
@@ -15,16 +16,20 @@
     <a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a>
   </div>
 
-  <div class="hero-container" id="hero-container">
+  <div class="hero-container">
+
     <div id="loading" style="text-align:center; padding: 60px;">
       <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #ED1D24;"></i>
-      <p>Loading hero...</p>
+      <p style="margin-top: 20px; font-size: 1.2rem;">Loading hero...</p>
     </div>
 
     <div id="error" style="display:none; text-align:center; padding: 60px;">
       <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ED1D24;"></i>
-      <h2>Hero Not Found</h2>
-      <a href="index.html" style="display:inline-block; margin-top: 20px; padding: 12px 30px; background: #ED1D24; color: white; border-radius: 50px;">Go Home</a>
+      <h2 style="margin-top: 20px;">Hero Not Found</h2>
+      <p style="margin-top: 10px;">We couldn't find that hero. Please go back home.</p>
+      <a href="index.html" style="display:inline-block; margin-top: 20px; padding: 12px 30px; background: #ED1D24; color: white; border-radius: 50px; text-decoration: none; font-weight: bold;">
+        <i class="fas fa-home"></i> Go Home
+      </a>
     </div>
 
     <div id="hero-content" style="display:none;">
@@ -36,7 +41,6 @@
         <div class="hero-image">
           <img id="hero-image" src="" alt="">
         </div>
-
         <div class="hero-details">
           <div class="bio-section">
             <h4><i class="fas fa-user"></i> Bio</h4>
@@ -46,7 +50,6 @@
             <p><strong>Gender:</strong> <span id="bio-gender"></span></p>
             <p><strong>Race:</strong> <span id="bio-race"></span></p>
           </div>
-
           <div class="stats-section">
             <h4><i class="fas fa-chart-line"></i> Power Stats</h4>
             <p><strong>Intelligence:</strong> <span class="stat-value" id="stat-intelligence"></span><span class="stat-bar"><span class="stat-fill" id="fill-intelligence"></span></span></p>
@@ -63,98 +66,78 @@
     </div>
   </div>
 
+  <a href="#" class="back-to-top" id="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
   <footer>
     <p>2025 Marvel Gallery | Created by TJ Killer</p>
   </footer>
 
   <script>
-    // =============================================
-    // STEP 1: Get the hero ID from the URL
-    // Example: hero.html?id=thor  →  heroId = "thor"
-    // =============================================
-    const params = new URLSearchParams(window.location.search);
-    const heroId = params.get('id');
+    // ── SUPABASE CONFIG ──
+    const SUPABASE_URL = 'https://zxhubiaitwrkyxoiojei.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4aHViaWFpdHdya3l4b2lvamVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5OTY2ODksImV4cCI6MjA5MzU3MjY4OX0.4v-vO3JA2jAU1ItSRHFOoZDfAjHEFmkuiPhDBy7ljiU';
+    const HEADERS = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
 
-    if (!heroId) {
-      showError();
-    } else {
-      loadHero(heroId);
-    }
+    // Get hero id from URL e.g. hero.html?id=thor
+    const heroId = new URLSearchParams(window.location.search).get('id');
+    if (!heroId) { showError(); } else { loadHero(heroId); }
 
-    // =============================================
-    // STEP 2: Load heroes.json and find the hero
-    // =============================================
     async function loadHero(id) {
       try {
-        const response = await fetch('heroes.json');
-        const data = await response.json();
+        const res  = await fetch(`${SUPABASE_URL}/rest/v1/heroes?id=eq.${id}&select=*`, { headers: HEADERS });
+        const data = await res.json();
+        if (!data || data.length === 0) { showError(); return; }
 
-        // Find the hero that matches our ID
-        const hero = data.heroes.find(h => h.id === id);
+        const hero = data[0];
+        let nextHero = null;
 
-        if (!hero) {
-          showError();
-          return;
+        if (hero.next_hero) {
+          const nr   = await fetch(`${SUPABASE_URL}/rest/v1/heroes?id=eq.${hero.next_hero}&select=id,name`, { headers: HEADERS });
+          const nd   = await nr.json();
+          if (nd && nd.length > 0) nextHero = nd[0];
         }
 
-        // Hero found — build the page
-        buildPage(hero, data.heroes);
-
+        buildPage(hero, nextHero);
       } catch (err) {
-        console.error('Error loading heroes.json:', err);
+        console.error('Supabase error:', err);
         showError();
       }
     }
 
-    // =============================================
-    // STEP 3: Build the page with hero data
-    // =============================================
-    function buildPage(hero, allHeroes) {
-
-      // --- Page title ---
+    function buildPage(hero, nextHero) {
       document.title = hero.name + ' - Marvel Hero';
       document.body.className = hero.theme || '';
-      
+
       document.getElementById('hero-title').innerHTML = `<i class="${hero.icon || 'fas fa-star'}"></i> ${hero.name}`;
-      
-      const img = document.getElementById('hero-image');
-      img.src = hero.image;
-      img.alt = hero.name;
+      document.getElementById('hero-image').src = hero.image;
+      document.getElementById('hero-image').alt = hero.name;
 
-      // --- Bio fields ---
-      document.getElementById('bio-fullName').textContent = hero.bio.fullName;
-      document.getElementById('bio-placeOfBirth').textContent = hero.bio.placeOfBirth;
-      document.getElementById('bio-alignment').textContent = hero.bio.alignment;
-      document.getElementById('bio-gender').textContent = hero.bio.gender;
-      document.getElementById('bio-race').textContent = hero.bio.race;
+      // Bio — Supabase uses lowercase column names
+      document.getElementById('bio-fullName').textContent     = hero.bio_fullname     || '—';
+      document.getElementById('bio-placeOfBirth').textContent = hero.bio_placeofbirth || '—';
+      document.getElementById('bio-alignment').textContent    = hero.bio_alignment    || '—';
+      document.getElementById('bio-gender').textContent       = hero.bio_gender       || '—';
+      document.getElementById('bio-race').textContent         = hero.bio_race         || '—';
 
-      // --- Stats ---
-      const statKeys = ['intelligence', 'strength', 'speed', 'durability', 'power', 'combat'];
-      statKeys.forEach(stat => {
-        const value = hero.stats[stat];
+      // Stats — columns: stat_intelligence, stat_strength etc.
+      ['intelligence','strength','speed','durability','power','combat'].forEach(stat => {
+        const value = hero['stat_' + stat] || 0;
         document.getElementById('stat-' + stat).textContent = value + '%';
         setTimeout(() => {
           document.getElementById('fill-' + stat).style.width = value + '%';
-        }, 100);
+        }, 300);
       });
-      
+
+      // Next hero button
       const nextBtn = document.getElementById('next-btn');
-      if (hero.next) {
-        // Find the next hero's name
-        const nextHero = allHeroes.find(h => h.id === hero.next);
-        nextBtn.innerHTML = `
-          <a href="hero.html?id=${hero.next}">
-            <i class="fas fa-arrow-right"></i> Next: ${nextHero ? nextHero.name : 'Next Hero'}
-          </a>`;
+      if (hero.next_hero && nextHero) {
+        nextBtn.innerHTML = `<a href="hero.html?id=${hero.next_hero}"><i class="fas fa-arrow-right"></i> Next: ${nextHero.name}</a>`;
       } else {
-        // Last hero — go back home
-        nextBtn.innerHTML = `
-          <a href="index.html">
-            <i class="fas fa-home"></i> Return Home
-          </a>`;
+        nextBtn.innerHTML = `<a href="index.html"><i class="fas fa-home"></i> Return Home</a>`;
       }
 
-      // --- Show the content, hide loading ---
       document.getElementById('loading').style.display = 'none';
       document.getElementById('hero-content').style.display = 'block';
     }
@@ -163,6 +146,14 @@
       document.getElementById('loading').style.display = 'none';
       document.getElementById('error').style.display = 'block';
     }
+
+    // Back to top
+    const backToTop = document.getElementById('back-to-top');
+    backToTop.addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    window.addEventListener('scroll', () => {
+      backToTop.style.opacity    = window.pageYOffset > 300 ? '1' : '0';
+      backToTop.style.visibility = window.pageYOffset > 300 ? 'visible' : 'hidden';
+    });
   </script>
 </body>
 </html>
