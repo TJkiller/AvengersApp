@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marvel Gallery — Admin Panel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap');
+
+    :root {
+      --red: #ED1D24;
+      --dark-red: #B22222;
+      --gold: #FFD700;
+      --dark: #0a0a0a;
+      --dark-2: #141414;
+      --dark-3: #1e1e1e;
+      --dark-4: #2a2a2a;
+      --border: rgba(255,255,255,0.08);
+      --text: #f0f0f0;
+      --text-muted: #888;
+      --success: #22c55e;
+      --error: #ef4444;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── LOGIN SCREEN ── */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at center, #1a0000 0%, var(--dark) 70%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #login-screen::before {
+      content: 'MARVEL';
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30vw;
+      color: rgba(237,29,36,0.03);
+      letter-spacing: -10px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .login-box {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--red);
+      padding: 50px 40px;
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-box h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 3px;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+
+    .login-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 35px;
+    }
+
+    .login-box label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .login-box input {
+      width: 100%;
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 14px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 25px;
+    }
+
+    .login-box input:focus { border-color: var(--red); }
+
+    .btn-login {
+      width: 100%;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 15px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-login:hover { background: var(--dark-red); }
+
+    #login-error {
+      color: var(--error);
+      font-size: 0.85rem;
+      margin-top: 15px;
+      display: none;
+      text-align: center;
+    }
+
+    /* ── ADMIN PANEL ── */
+    #admin-panel { display: none; }
+
+    .topbar {
+      background: var(--dark-2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 30px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 3px;
+      color: var(--red);
+    }
+
+    .topbar-logo span { color: var(--text-muted); font-size: 0.9rem; margin-left: 10px; }
+
+    .topbar-right { display: flex; align-items: center; gap: 20px; }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 7px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-logout:hover { border-color: var(--red); color: var(--red); }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-counter {
+      padding: 20px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-counter:last-child { border-right: none; }
+    .stat-counter .number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--red);
+      line-height: 1;
+    }
+    .stat-counter .label {
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .admin-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    @media (max-width: 900px) { .admin-body { grid-template-columns: 1fr; } }
+
+    .panel {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+    }
+
+    .panel-header {
+      padding: 20px 25px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .panel-header i { color: var(--red); }
+    .panel-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+    }
+
+    .panel-body { padding: 25px; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group select {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 14px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--red); }
+    .form-group select option { background: var(--dark-3); }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin: 20px 0 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      grid-column: 1 / -1;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 5px;
+    }
+
+    .stat-input-group { display: flex; flex-direction: column; gap: 5px; }
+    .stat-input-group label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .stat-input-group input {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 8px 10px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      outline: none;
+      text-align: center;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+    .stat-input-group input:focus { border-color: var(--gold); }
+
+    .btn-submit {
+      width: 100%;
+      margin-top: 25px;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 15px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-submit:hover { background: var(--dark-red); }
+    .btn-submit:disabled { background: var(--dark-4); color: var(--text-muted); cursor: not-allowed; }
+
+    /* Hero List */
+    .hero-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .hero-list-item {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: border-color 0.2s;
+    }
+    .hero-list-item:hover { border-color: rgba(237,29,36,0.3); }
+
+    .hero-list-item img {
+      width: 45px;
+      height: 45px;
+      object-fit: cover;
+      border: 2px solid var(--border);
+    }
+
+    .hero-list-info { flex: 1; }
+    .hero-list-info strong { display: block; font-weight: 700; font-size: 0.95rem; }
+    .hero-list-info span { font-size: 0.8rem; color: var(--text-muted); }
+
+    .hero-list-stats { display: flex; gap: 8px; }
+    .mini-stat {
+      background: var(--dark-4);
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .btn-delete {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      font-size: 0.8rem;
+    }
+    .btn-delete:hover { border-color: var(--error); color: var(--error); }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
+    .empty-state i { font-size: 2.5rem; margin-bottom: 15px; opacity: 0.3; display: block; }
+
+    .list-loading { text-align: center; padding: 30px; color: var(--text-muted); }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 15px 25px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      z-index: 9999;
+      animation: slideIn 0.3s ease;
+    }
+    #toast.success { background: var(--success); color: white; }
+    #toast.error { background: var(--error); color: white; }
+
+    @keyframes slideIn {
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen">
+    <div class="login-box">
+      <h1>⚡ Admin Panel</h1>
+      <p>Marvel Gallery — Restricted Access</p>
+      <label>Password</label>
+      <input type="password" id="password-input" placeholder="Enter admin password"
+        onkeydown="if(event.key==='Enter') checkPassword()">
+      <button class="btn-login" onclick="checkPassword()">
+        <i class="fas fa-shield-alt"></i> ACCESS PANEL
+      </button>
+      <div id="login-error">
+        <i class="fas fa-exclamation-triangle"></i> Wrong password. Try again.
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div id="admin-panel">
+
+    <div class="topbar">
+      <div class="topbar-logo">⚡ Marvel Gallery <span>/ Admin</span></div>
+      <div class="topbar-right">
+        <span id="hero-count-badge" style="color:var(--text-muted);font-size:0.85rem;"></span>
+        <button class="btn-logout" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-counter">
+        <div class="number" id="total-heroes">—</div>
+        <div class="label">Total Heroes</div>
+      </div>
+      <div class="stat-counter">
+        <div class="number" id="avg-combat">—</div>
+        <div class="label">Avg Combat</div>
+      </div>
+      <div class="stat-counter">
+        <div class="number" id="avg-power">—</div>
+        <div class="label">Avg Power</div>
+      </div>
+    </div>
+
+    <div class="admin-body">
+
+      <!-- ADD HERO FORM -->
+      <div class="panel">
+        <div class="panel-header">
+          <i class="fas fa-plus-circle"></i>
+          <h2>Add New Hero</h2>
+        </div>
+        <div class="panel-body">
+          <div class="form-grid">
+
+            <div class="section-label">Basic Info</div>
+
+            <div class="form-group">
+              <label>Hero ID (no spaces)</label>
+              <input type="text" id="f-id" placeholder="e.g. spiderman">
+            </div>
+            <div class="form-group">
+              <label>Display Name</label>
+              <input type="text" id="f-name" placeholder="e.g. Spider-Man">
+            </div>
+            <div class="form-group">
+              <label>Title</label>
+              <input type="text" id="f-title" placeholder="e.g. Friendly Neighborhood Hero">
+            </div>
+            <div class="form-group">
+              <label>Display Order</label>
+              <input type="number" id="f-order" placeholder="e.g. 7" min="1">
+            </div>
+            <div class="form-group full">
+              <label>Description (shown on home page)</label>
+              <input type="text" id="f-description" placeholder="Short hero description...">
+            </div>
+            <div class="form-group full">
+              <label>Image Path</label>
+              <input type="text" id="f-image" placeholder="images/spiderman.jpg">
+            </div>
+
+            <div class="section-label">Theme & Style</div>
+
+            <div class="form-group">
+              <label>CSS Theme Class</label>
+              <input type="text" id="f-theme" placeholder="theme-spiderman">
+            </div>
+            <div class="form-group">
+              <label>Font Awesome Icon</label>
+              <input type="text" id="f-icon" placeholder="fas fa-spider">
+            </div>
+            <div class="form-group">
+              <label>Primary Color</label>
+              <input type="color" id="f-color-primary" value="#ED1D24">
+            </div>
+            <div class="form-group">
+              <label>Secondary Color</label>
+              <input type="color" id="f-color-secondary" value="#0078D4">
+            </div>
+            <div class="form-group full">
+              <label>Next Hero ID (leave blank if last hero)</label>
+              <input type="text" id="f-next" placeholder="e.g. blackwidow">
+            </div>
+
+            <div class="section-label">Biography</div>
+
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="f-fullname" placeholder="e.g. Peter Parker">
+            </div>
+            <div class="form-group">
+              <label>Place of Birth</label>
+              <input type="text" id="f-birthplace" placeholder="e.g. New York">
+            </div>
+            <div class="form-group">
+              <label>Alignment</label>
+              <select id="f-alignment">
+                <option value="Good">Good</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Bad">Bad</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Gender</label>
+              <select id="f-gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label>Race / Species</label>
+              <input type="text" id="f-race" placeholder="e.g. Human">
+            </div>
+
+            <div class="section-label">Power Stats (0–100)</div>
+
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-input-group">
+              <label>Intelligence</label>
+              <input type="number" id="s-intelligence" min="0" max="100" value="50">
+            </div>
+            <div class="stat-input-group">
+              <label>Strength</label>
+              <input type="number" id="s-strength" min="0" max="100" value="50">
+            </div>
+            <div class="stat-input-group">
+              <label>Speed</label>
+              <input type="number" id="s-speed" min="0" max="100" value="50">
+            </div>
+            <div class="stat-input-group">
+              <label>Durability</label>
+              <input type="number" id="s-durability" min="0" max="100" value="50">
+            </div>
+            <div class="stat-input-group">
+              <label>Power</label>
+              <input type="number" id="s-power" min="0" max="100" value="50">
+            </div>
+            <div class="stat-input-group">
+              <label>Combat</label>
+              <input type="number" id="s-combat" min="0" max="100" value="50">
+            </div>
+          </div>
+
+          <button class="btn-submit" id="submit-btn" onclick="addHero()">
+            <i class="fas fa-plus"></i> ADD HERO TO DATABASE
+          </button>
+        </div>
+      </div>
+
+      <!-- HEROES LIST -->
+      <div class="panel">
+        <div class="panel-header">
+          <i class="fas fa-list"></i>
+          <h2>Current Heroes</h2>
+        </div>
+        <div class="panel-body">
+          <div id="hero-list">
+            <div class="list-loading">
+              <i class="fas fa-spinner fa-spin"></i> Loading heroes...
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    const SUPABASE_URL = 'https://zxhubiaitwrkyxoiojei.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4aHViaWFpdHdya3l4b2lvamVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5OTY2ODksImV4cCI6MjA5MzU3MjY4OX0.4v-vO3JA2jAU1ItSRHFOoZDfAjHEFmkuiPhDBy7ljiU';
+
+    // ⚠️ CHANGE THIS PASSWORD TO SOMETHING ONLY YOU KNOW
+    const ADMIN_PASSWORD = 'marvel2025';
+
+    // LOGIN
+    function checkPassword() {
+      const input = document.getElementById('password-input').value;
+      if (input === ADMIN_PASSWORD) {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('admin-panel').style.display = 'block';
+        loadHeroes();
+      } else {
+        document.getElementById('login-error').style.display = 'block';
+        document.getElementById('password-input').value = '';
+        document.getElementById('password-input').focus();
+      }
+    }
+
+    function logout() {
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('admin-panel').style.display = 'none';
+      document.getElementById('password-input').value = '';
+    }
+
+    // LOAD HEROES
+    async function loadHeroes() {
+      try {
+        const res = await fetch(
+          `${SUPABASE_URL}/rest/v1/heroes?select=*&order=display_order.asc`,
+          { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } }
+        );
+        const heroes = await res.json();
+        renderHeroList(heroes);
+        updateStats(heroes);
+      } catch (err) {
+        document.getElementById('hero-list').innerHTML =
+          `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><p>Could not load heroes.</p></div>`;
+      }
+    }
+
+    // RENDER LIST
+    function renderHeroList(heroes) {
+      const list = document.getElementById('hero-list');
+      if (!heroes || heroes.length === 0) {
+        list.innerHTML = `<div class="empty-state"><i class="fas fa-user-slash"></i><p>No heroes yet. Add your first one!</p></div>`;
+        return;
+      }
+      list.innerHTML = `<div class="hero-list">${heroes.map(hero => `
+        <div class="hero-list-item">
+          <img src="${hero.image}" alt="${hero.name}"
+            onerror="this.src='https://placehold.co/45x45/1e1e1e/666?text=?'">
+          <div class="hero-list-info">
+            <strong>${hero.name}</strong>
+            <span>${hero.title || ''} · Order #${hero.display_order}</span>
+          </div>
+          <div class="hero-list-stats">
+            <span class="mini-stat">STR ${hero.stat_strength}</span>
+            <span class="mini-stat">CMB ${hero.stat_combat}</span>
+          </div>
+          <button class="btn-delete" onclick="deleteHero('${hero.id}','${hero.name}')">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>`).join('')}
+      </div>`;
+    }
+
+    // STATS COUNTERS
+    function updateStats(heroes) {
+      document.getElementById('total-heroes').textContent = heroes.length;
+      if (heroes.length > 0) {
+        document.getElementById('avg-combat').textContent =
+          Math.round(heroes.reduce((s,h) => s + h.stat_combat, 0) / heroes.length);
+        document.getElementById('avg-power').textContent =
+          Math.round(heroes.reduce((s,h) => s + h.stat_power, 0) / heroes.length);
+      }
+      document.getElementById('hero-count-badge').textContent =
+        `${heroes.length} hero${heroes.length !== 1 ? 'es' : ''} in database`;
+    }
+
+    // ADD HERO
+    async function addHero() {
+      const id = document.getElementById('f-id').value.trim().toLowerCase().replace(/\s/g,'');
+      const name = document.getElementById('f-name').value.trim();
+      const image = document.getElementById('f-image').value.trim();
+
+      if (!id || !name || !image) {
+        showToast('Please fill in at least: ID, Name and Image Path', 'error');
+        return;
+      }
+
+      const hero = {
+        id,
+        name,
+        title:            document.getElementById('f-title').value.trim(),
+        description:      document.getElementById('f-description').value.trim(),
+        image,
+        theme:            document.getElementById('f-theme').value.trim(),
+        icon:             document.getElementById('f-icon').value.trim(),
+        next_hero:        document.getElementById('f-next').value.trim() || null,
+        display_order:    parseInt(document.getElementById('f-order').value) || 99,
+        color_primary:    document.getElementById('f-color-primary').value,
+        color_secondary:  document.getElementById('f-color-secondary').value,
+        bio_fullname:     document.getElementById('f-fullname').value.trim(),
+        bio_placeofbirth: document.getElementById('f-birthplace').value.trim(),
+        bio_alignment:    document.getElementById('f-alignment').value,
+        bio_gender:       document.getElementById('f-gender').value,
+        bio_race:         document.getElementById('f-race').value.trim(),
+        stat_intelligence: parseInt(document.getElementById('s-intelligence').value) || 50,
+        stat_strength:     parseInt(document.getElementById('s-strength').value) || 50,
+        stat_speed:        parseInt(document.getElementById('s-speed').value) || 50,
+        stat_durability:   parseInt(document.getElementById('s-durability').value) || 50,
+        stat_power:        parseInt(document.getElementById('s-power').value) || 50,
+        stat_combat:       parseInt(document.getElementById('s-combat').value) || 50,
+      };
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SAVING...';
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/heroes`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(hero)
+        });
+
+        if (res.ok) {
+          showToast(`✅ ${name} added successfully!`, 'success');
+          clearForm();
+          loadHeroes();
+        } else {
+          const err = await res.json();
+          showToast('Error: ' + (err.message || 'Could not save hero'), 'error');
+        }
+      } catch (err) {
+        showToast('Connection error. Please try again.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-plus"></i> ADD HERO TO DATABASE';
+      }
+    }
+
+    // DELETE HERO
+    async function deleteHero(id, name) {
+      if (!confirm(`Delete ${name}? This cannot be undone.`)) return;
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/heroes?id=eq.${id}`, {
+          method: 'DELETE',
+          headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+        });
+        if (res.ok) {
+          showToast(`🗑️ ${name} deleted.`, 'success');
+          loadHeroes();
+        } else {
+          showToast('Could not delete. Check Supabase RLS policies.', 'error');
+        }
+      } catch (err) {
+        showToast('Connection error.', 'error');
+      }
+    }
+
+    // CLEAR FORM
+    function clearForm() {
+      ['f-id','f-name','f-title','f-description','f-image',
+       'f-theme','f-icon','f-next','f-fullname','f-birthplace','f-race']
+        .forEach(id => document.getElementById(id).value = '');
+      document.getElementById('f-order').value = '';
+      document.getElementById('f-color-primary').value = '#ED1D24';
+      document.getElementById('f-color-secondary').value = '#0078D4';
+      ['s-intelligence','s-strength','s-speed','s-durability','s-power','s-combat']
+        .forEach(id => document.getElementById(id).value = 50);
+    }
+
+    // TOAST
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = type;
+      toast.style.display = 'flex';
+      setTimeout(() => { toast.style.display = 'none'; }, 3500);
+    }
+  </script>
+
+</body>
+</html>
