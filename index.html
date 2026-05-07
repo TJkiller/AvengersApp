@@ -30,6 +30,14 @@
     </div>
   </nav>
 
+       <!-- ── HERO OF THE DAY ── -->
+    <div class="hotd-banner" id="hotd-banner">
+      <div class="hotd-loading">
+        <i class="fas fa-spinner fa-spin" style="color:#ED1D24; font-size:1.5rem;"></i>
+        Loading Hero of the Day...
+      </div>
+    </div>
+
   <!-- HERO BANNER -->
   <section id="home" class="hero-section">
     <div class="container">
@@ -39,13 +47,6 @@
     </div>
   </section>
 
-     <!-- ── HERO OF THE DAY ── -->
-    <div class="hotd-banner" id="hotd-banner">
-      <div class="hotd-loading">
-        <i class="fas fa-spinner fa-spin" style="color:#ED1D24; font-size:1.5rem;"></i>
-        Loading Hero of the Day...
-      </div>
-    </div>
 
   <div class="container">
 
@@ -181,81 +182,66 @@
       'Content-Type': 'application/json'
     };
 
-    // ══════════════════════════════════════
-    // HERO OF THE DAY
-    // Logic: get day of the year, use it to
-    // pick a hero index from the full list.
-    // Same hero all day, changes at midnight.
-    // ══════════════════════════════════════
-    async function loadHeroOfTheDay() {
-      try {
-        const res    = await fetch(
-          `${SUPABASE_URL}/rest/v1/heroes?select=*&order=display_order.asc`,
-          { headers: HEADERS }
-        );
-        const heroes = await res.json();
-        if (!heroes || heroes.length === 0) {
-          document.getElementById('hotd-banner').style.display = 'none';
-          return;
-        }
- 
-        // Pick hero based on day of the year — changes every day automatically
-        const now       = new Date();
-        const startOfYear = new Date(now.getFullYear(), 0, 0);
-        const dayOfYear = Math.floor((now - startOfYear) / 86400000);
-        const hero      = heroes[dayOfYear % heroes.length];
- 
-        // Build the banner HTML
-        document.getElementById('hotd-banner').innerHTML = `
-          <div class="hotd-inner">
- 
-            <div class="hotd-img-wrap">
-              <img src="${hero.image}" alt="${hero.name}"
-                onerror="this.src='https://placehold.co/260x200/1e1e1e/666?text=${hero.name}'">
-            </div>
- 
-            <div class="hotd-body">
-              <div class="hotd-label">
-                <i class="fas fa-star"></i> Hero of the Day
-              </div>
- 
-              <h2 class="hotd-name">${hero.name}</h2>
-              <div class="hotd-title">${hero.title || ''}</div>
- 
-              <p class="hotd-description">${hero.description || ''}</p>
- 
-              <div class="hotd-stats">
-                <div class="hotd-stat">
-                  <span class="sval">${hero.stat_combat}</span>
-                  <span class="slbl">Combat</span>
-                </div>
-                <div class="hotd-stat">
-                  <span class="sval">${hero.stat_strength}</span>
-                  <span class="slbl">Strength</span>
-                </div>
-                <div class="hotd-stat">
-                  <span class="sval">${hero.stat_intelligence}</span>
-                  <span class="slbl">Intelligence</span>
-                </div>
-                <div class="hotd-stat">
-                  <span class="sval">${hero.stat_speed}</span>
-                  <span class="slbl">Speed</span>
-                </div>
-              </div>
- 
-              <a href="hero.html?id=${hero.id}" class="hotd-btn">
-                <i class="fas fa-eye"></i> View Full Profile
-              </a>
-            </div>
- 
-          </div>
-        `;
- 
-      } catch (err) {
-        console.error('Hero of the Day error:', err);
-        document.getElementById('hotd-banner').style.display = 'none';
-      }
+  // ══════════════════════════════════════
+// HERO OF THE DAY - COMPACT BANNER
+// ══════════════════════════════════════
+async function loadHeroOfTheDay() {
+  try {
+    const res    = await fetch(
+      `${SUPABASE_URL}/rest/v1/heroes?select=*&order=display_order.asc`,
+      { headers: HEADERS }
+    );
+    const heroes = await res.json();
+    if (!heroes || heroes.length === 0) {
+      document.getElementById('hotd-banner').style.display = 'none';
+      return;
     }
+
+    // Pick hero based on day of the year
+    const now       = new Date();
+    const startOfYear = new Date(now.getFullYear(), 0, 0);
+    const dayOfYear = Math.floor((now - startOfYear) / 86400000);
+    const hero      = heroes[dayOfYear % heroes.length];
+
+    // Build the compact banner
+    document.getElementById('hotd-banner').innerHTML = `
+      <div class="hotd-inner">
+        <div class="hotd-img-wrap">
+          <img src="${hero.image}" alt="${hero.name}"
+            onerror="this.src='https://placehold.co/100x100/1e1e1e/666?text=${hero.name}'">
+        </div>
+        <div class="hotd-body">
+          <div class="hotd-label">
+            <i class="fas fa-star"></i> Hero of the Day
+          </div>
+          <h2 class="hotd-name">${hero.name}</h2>
+          <div class="hotd-title">${hero.title || 'Avenger'}</div>
+          <div class="hotd-stats">
+            <div class="hotd-stat">
+              <span class="sval">${hero.stat_combat}</span>
+              <span class="slbl">CMB</span>
+            </div>
+            <div class="hotd-stat">
+              <span class="sval">${hero.stat_strength}</span>
+              <span class="slbl">STR</span>
+            </div>
+            <div class="hotd-stat">
+              <span class="sval">${hero.stat_intelligence}</span>
+              <span class="slbl">INT</span>
+            </div>
+          </div>
+          <a href="hero.html?id=${hero.id}" class="hotd-btn">
+            View Profile <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    `;
+
+  } catch (err) {
+    console.error('Hero of the Day error:', err);
+    document.getElementById('hotd-banner').style.display = 'none';
+  }
+}
  
     // ── LOAD GALLERY FROM SUPABASE ──
     async function loadGallery() {
