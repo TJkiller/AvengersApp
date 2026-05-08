@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Comparison — Marvel Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap');
+
+    :root {
+      --red:    #ED1D24;
+      --dark-red: #B22222;
+      --gold:   #FFD700;
+      --blue:   #0078D4;
+      --dark:   #0a0a0a;
+      --dark-2: #141414;
+      --dark-3: #1e1e1e;
+      --dark-4: #2a2a2a;
+      --border: rgba(255,255,255,0.08);
+      --text:   #f0f0f0;
+      --muted:  #888;
+      --radius: 12px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: rgba(10,10,10,0.97);
+      border-bottom: 2px solid var(--red);
+      padding: 0 24px;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .nav-links-row a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-links-row a:hover,
+    .nav-links-row a.active {
+      color: var(--gold);
+      background: rgba(255,215,0,0.08);
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      text-align: center;
+      padding: 50px 20px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: 'VS';
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30vw;
+      color: rgba(237,29,36,0.04);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      letter-spacing: -10px;
+    }
+
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      letter-spacing: 4px;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* ── SELECTOR ── */
+    .selector-section {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+    }
+
+    .selector-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .selector-box {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .selector-box label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .selector-box select {
+      width: 100%;
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+
+    .selector-box select:focus { border-color: var(--red); }
+
+    .vs-badge {
+      text-align: center;
+    }
+
+    .vs-badge span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 4px;
+      background: linear-gradient(135deg, var(--red), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .btn-compare {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 14px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      cursor: pointer;
+      border-radius: 50px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(237,29,36,0.3);
+    }
+
+    .btn-compare:hover {
+      background: var(--dark-red);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(237,29,36,0.4);
+    }
+
+    .btn-compare:disabled {
+      background: var(--dark-4);
+      color: var(--muted);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ── COMPARISON RESULT ── */
+    #comparison-result { display: none; }
+
+    .comparison-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* Hero portraits */
+    .portraits {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 20px;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+
+    .portrait-card {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .portrait-card.winner {
+      border-color: var(--gold);
+      box-shadow: 0 0 30px rgba(255,215,0,0.15);
+    }
+
+    .portrait-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .portrait-info {
+      padding: 16px;
+    }
+
+    .portrait-info h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      margin-bottom: 4px;
+    }
+
+    .portrait-info .hero-title {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .total-score {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .score-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .winner-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-top: 8px;
+    }
+
+    /* VS divider */
+    .vs-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vs-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), var(--dark-red));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      box-shadow: 0 0 20px rgba(237,29,36,0.4);
+    }
+
+    /* ── STATS COMPARISON ── */
+    .stats-panel {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .stats-panel-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .stats-panel-header i { color: var(--red); }
+
+    .stats-panel-header h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    .stat-row {
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .stat-row:last-child { border-bottom: none; }
+
+    /* Left hero bar (fills right to left) */
+    .bar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .bar-left .val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      min-width: 42px;
+      text-align: right;
+    }
+
+    .bar-left .track {
+      height: 10px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .bar-left .fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 10px;
+      transition: width 1s ease-out;
+    }
+
+    /* Right hero bar (fills left to right) */
+    .bar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bar-right .val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      min-width: 42px;
+    }
+
+    .bar-right .track {
+      height: 10px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .bar-right .fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 10px;
+      transition: width 1s ease-out;
+    }
+
+    /* Stat label in center */
+    .stat-label-center {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      padding: 0 8px;
+    }
+
+    /* Winner highlight on stat */
+    .bar-left .val.winner-val,
+    .bar-right .val.winner-val {
+      color: var(--gold);
+    }
+
+    .bar-left .fill.winner-fill,
+    .bar-right .fill.winner-fill {
+      box-shadow: 0 0 8px rgba(255,215,0,0.3);
+    }
+
+    /* ── BIO COMPARISON ── */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .bio-card {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .bio-card-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bio-card-header i { color: var(--red); font-size: 0.9rem; }
+
+    .bio-card-header h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    .bio-card-body { padding: 16px 20px; }
+
+    .bio-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.88rem;
+      gap: 12px;
+    }
+
+    .bio-row:last-child { border-bottom: none; }
+
+    .bio-row .bio-key {
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+
+    .bio-row .bio-val {
+      text-align: right;
+      font-weight: 500;
+    }
+
+    /* ── RESET BUTTON ── */
+    .btn-reset {
+      display: block;
+      margin: 0 auto 40px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 10px 28px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-reset:hover { border-color: var(--red); color: var(--red); }
+
+    /* ── LOADING / ERROR ── */
+    .state-box {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    .state-box i { font-size: 2.5rem; margin-bottom: 16px; display: block; }
+
+    /* ══════════════════
+       RESPONSIVE
+    ══════════════════ */
+    @media (max-width: 768px) {
+      .selector-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .vs-badge span { font-size: 1.5rem; }
+
+      .portraits {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .vs-divider { padding: 5px 0; }
+
+      .stat-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 14px 16px;
+      }
+
+      .bar-left { justify-content: flex-start; flex-direction: row-reverse; }
+      .bar-left .track { order: -1; }
+
+      .stat-label-center { text-align: left; }
+
+      .bio-grid { grid-template-columns: 1fr; }
+
+      .portrait-card img { height: 180px; }
+
+      .nav-links-row { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .page-header { padding: 30px 16px 20px; }
+      .comparison-wrapper { padding: 0 14px 40px; }
+      .stat-row { padding: 12px 14px; }
+      .bio-card-body { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">⚡ Marvel Gallery</a>
+    <div class="nav-links-row">
+      <a href="index.html">Home</a>
+      <a href="index.html#gallery">Heroes</a>
+      <a href="compare.html" class="active">Compare</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h1><i class="fas fa-exchange-alt"></i> Hero Comparison</h1>
+    <p>Pick two heroes and see who comes out on top</p>
+  </div>
+
+  <!-- HERO SELECTORS -->
+  <div class="selector-section">
+    <div class="selector-grid">
+      <div class="selector-box">
+        <label><i class="fas fa-user"></i> Hero One</label>
+        <select id="hero-one">
+          <option value="">— Select a hero —</option>
+        </select>
+      </div>
+
+      <div class="vs-badge">
+        <span>VS</span>
+      </div>
+
+      <div class="selector-box">
+        <label><i class="fas fa-user"></i> Hero Two</label>
+        <select id="hero-two">
+          <option value="">— Select a hero —</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn-compare" id="btn-compare" onclick="runComparison()" disabled>
+      <i class="fas fa-bolt"></i> COMPARE HEROES
+    </button>
+  </div>
+
+  <!-- COMPARISON RESULT -->
+  <div id="comparison-result">
+
+    <!-- Loading -->
+    <div id="comp-loading" class="state-box" style="display:none;">
+      <i class="fas fa-spinner fa-spin" style="color:#ED1D24;"></i>
+      <p>Loading hero data...</p>
+    </div>
+
+    <!-- Error -->
+    <div id="comp-error" class="state-box" style="display:none;">
+      <i class="fas fa-exclamation-triangle" style="color:#ED1D24;"></i>
+      <p>Could not load hero data. Please try again.</p>
+    </div>
+
+    <!-- Result -->
+    <div id="comp-content" class="comparison-wrapper" style="display:none;">
+
+      <!-- PORTRAITS -->
+      <div class="portraits">
+        <div class="portrait-card" id="portrait-one">
+          <img id="img-one" src="" alt="">
+          <div class="portrait-info">
+            <h2 id="name-one" style="color:#ED1D24;"></h2>
+            <div class="hero-title" id="title-one"></div>
+            <div class="total-score" id="score-one" style="color:#ED1D24;"></div>
+            <div class="score-label">Total Power Score</div>
+            <div id="badge-one"></div>
+          </div>
+        </div>
+
+        <div class="vs-divider">
+          <div class="vs-circle">VS</div>
+        </div>
+
+        <div class="portrait-card" id="portrait-two">
+          <img id="img-two" src="" alt="">
+          <div class="portrait-info">
+            <h2 id="name-two" style="color:#0078D4;"></h2>
+            <div class="hero-title" id="title-two"></div>
+            <div class="total-score" id="score-two" style="color:#0078D4;"></div>
+            <div class="score-label">Total Power Score</div>
+            <div id="badge-two"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS COMPARISON -->
+      <div class="stats-panel">
+        <div class="stats-panel-header">
+          <i class="fas fa-chart-bar"></i>
+          <h3>Power Stats Breakdown</h3>
+        </div>
+        <div id="stats-rows"></div>
+      </div>
+
+      <!-- BIO COMPARISON -->
+      <div class="bio-grid">
+        <div class="bio-card">
+          <div class="bio-card-header">
+            <i class="fas fa-id-card"></i>
+            <h4 id="bio-title-one"></h4>
+          </div>
+          <div class="bio-card-body" id="bio-one"></div>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card-header">
+            <i class="fas fa-id-card"></i>
+            <h4 id="bio-title-two"></h4>
+          </div>
+          <div class="bio-card-body" id="bio-two"></div>
+        </div>
+      </div>
+
+      <button class="btn-reset" onclick="resetComparison()">
+        <i class="fas fa-redo"></i> Compare Different Heroes
+      </button>
+
+    </div>
+  </div>
+
+  <script>
+    // ── SUPABASE CONFIG ──
+    const SUPABASE_URL = 'https://zxhubiaitwrkyxoiojei.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4aHViaWFpdHdya3l4b2lvamVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5OTY2ODksImV4cCI6MjA5MzU3MjY4OX0.4v-vO3JA2jAU1ItSRHFOoZDfAjHEFmkuiPhDBy7ljiU';
+    const HEADERS = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
+
+    const STATS = ['intelligence','strength','speed','durability','power','combat'];
+    const STAT_ICONS = {
+      intelligence: 'fas fa-brain',
+      strength:     'fas fa-dumbbell',
+      speed:        'fas fa-bolt',
+      durability:   'fas fa-shield-alt',
+      power:        'fas fa-fire',
+      combat:       'fas fa-fist-raised'
+    };
+
+    // Hero colors
+    const COLOR_ONE = '#ED1D24';
+    const COLOR_TWO = '#0078D4';
+
+    // ── LOAD DROPDOWNS ──
+    async function loadDropdowns() {
+      try {
+        const res    = await fetch(
+          `${SUPABASE_URL}/rest/v1/heroes?select=id,name&order=display_order.asc`,
+          { headers: HEADERS }
+        );
+        const heroes = await res.json();
+
+        const selectOne = document.getElementById('hero-one');
+        const selectTwo = document.getElementById('hero-two');
+
+        heroes.forEach(h => {
+          selectOne.innerHTML += `<option value="${h.id}">${h.name}</option>`;
+          selectTwo.innerHTML += `<option value="${h.id}">${h.name}</option>`;
+        });
+
+        // Enable compare button when both are selected
+        [selectOne, selectTwo].forEach(sel => {
+          sel.addEventListener('change', checkReady);
+        });
+
+      } catch (err) {
+        console.error('Dropdown load error:', err);
+      }
+    }
+
+    function checkReady() {
+      const one = document.getElementById('hero-one').value;
+      const two = document.getElementById('hero-two').value;
+      const btn = document.getElementById('btn-compare');
+      btn.disabled = !one || !two || one === two;
+      if (one === two && one !== '') {
+        btn.innerHTML = '<i class="fas fa-exclamation-circle"></i> PICK TWO DIFFERENT HEROES';
+      } else if (!one || !two) {
+        btn.innerHTML = '<i class="fas fa-bolt"></i> COMPARE HEROES';
+      } else {
+        btn.innerHTML = '<i class="fas fa-bolt"></i> COMPARE HEROES';
+      }
+    }
+
+    // ── RUN COMPARISON ──
+    async function runComparison() {
+      const idOne = document.getElementById('hero-one').value;
+      const idTwo = document.getElementById('hero-two').value;
+      if (!idOne || !idTwo || idOne === idTwo) return;
+
+      // Show result area, show loading
+      document.getElementById('comparison-result').style.display = 'block';
+      document.getElementById('comp-loading').style.display = 'block';
+      document.getElementById('comp-error').style.display   = 'none';
+      document.getElementById('comp-content').style.display = 'none';
+
+      // Scroll to results
+      document.getElementById('comparison-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      try {
+        // Fetch both heroes in parallel
+        const [resOne, resTwo] = await Promise.all([
+          fetch(`${SUPABASE_URL}/rest/v1/heroes?id=eq.${idOne}&select=*`, { headers: HEADERS }),
+          fetch(`${SUPABASE_URL}/rest/v1/heroes?id=eq.${idTwo}&select=*`, { headers: HEADERS })
+        ]);
+
+        const [dataOne, dataTwo] = await Promise.all([resOne.json(), resTwo.json()]);
+
+        if (!dataOne.length || !dataTwo.length) {
+          document.getElementById('comp-loading').style.display = 'none';
+          document.getElementById('comp-error').style.display   = 'block';
+          return;
+        }
+
+        buildComparison(dataOne[0], dataTwo[0]);
+
+      } catch (err) {
+        console.error('Comparison error:', err);
+        document.getElementById('comp-loading').style.display = 'none';
+        document.getElementById('comp-error').style.display   = 'block';
+      }
+    }
+
+    // ── BUILD COMPARISON ──
+    function buildComparison(h1, h2) {
+
+      // Total scores
+      const scoreOne = STATS.reduce((t, s) => t + (h1['stat_'+s] || 0), 0);
+      const scoreTwo = STATS.reduce((t, s) => t + (h2['stat_'+s] || 0), 0);
+      const winner   = scoreOne > scoreTwo ? 1 : scoreTwo > scoreOne ? 2 : 0;
+
+      // ── PORTRAITS ──
+      document.getElementById('img-one').src   = h1.image;
+      document.getElementById('img-one').alt   = h1.name;
+      document.getElementById('img-two').src   = h2.image;
+      document.getElementById('img-two').alt   = h2.name;
+
+      document.getElementById('name-one').textContent  = h1.name;
+      document.getElementById('title-one').textContent = h1.title || '';
+      document.getElementById('name-two').textContent  = h2.name;
+      document.getElementById('title-two').textContent = h2.title || '';
+
+      document.getElementById('score-one').textContent = scoreOne;
+      document.getElementById('score-two').textContent = scoreTwo;
+
+      // Winner badges & highlights
+      document.getElementById('badge-one').innerHTML = '';
+      document.getElementById('badge-two').innerHTML = '';
+      document.getElementById('portrait-one').classList.remove('winner');
+      document.getElementById('portrait-two').classList.remove('winner');
+
+      if (winner === 1) {
+        document.getElementById('badge-one').innerHTML = '<div class="winner-badge">🏆 WINNER</div>';
+        document.getElementById('portrait-one').classList.add('winner');
+      } else if (winner === 2) {
+        document.getElementById('badge-two').innerHTML = '<div class="winner-badge">🏆 WINNER</div>';
+        document.getElementById('portrait-two').classList.add('winner');
+      } else {
+        document.getElementById('badge-one').innerHTML = '<div class="winner-badge" style="background:#888;">🤝 TIE</div>';
+        document.getElementById('badge-two').innerHTML = '<div class="winner-badge" style="background:#888;">🤝 TIE</div>';
+      }
+
+      // ── STAT ROWS ──
+      const statsContainer = document.getElementById('stats-rows');
+      statsContainer.innerHTML = '';
+
+      STATS.forEach(stat => {
+        const valOne  = h1['stat_'+stat] || 0;
+        const valTwo  = h2['stat_'+stat] || 0;
+        const winsStat = valOne > valTwo ? 1 : valTwo > valOne ? 2 : 0;
+
+        const row = document.createElement('div');
+        row.className = 'stat-row';
+        row.innerHTML = `
+          <!-- Left: Hero One -->
+          <div class="bar-left">
+            <span class="val ${winsStat===1?'winner-val':''}">${valOne}</span>
+            <div class="track">
+              <div class="fill ${winsStat===1?'winner-fill':''}"
+                   id="bl-${stat}"
+                   style="background: linear-gradient(90deg, ${COLOR_ONE}, #ff6b6b);">
+              </div>
+            </div>
+          </div>
+
+          <!-- Center label -->
+          <div class="stat-label-center">
+            <i class="${STAT_ICONS[stat]}" style="color:#ED1D24; display:block; margin-bottom:4px;"></i>
+            ${stat.toUpperCase()}
+          </div>
+
+          <!-- Right: Hero Two -->
+          <div class="bar-right">
+            <div class="track">
+              <div class="fill ${winsStat===2?'winner-fill':''}"
+                   id="br-${stat}"
+                   style="background: linear-gradient(90deg, ${COLOR_TWO}, #6bcfff);">
+              </div>
+            </div>
+            <span class="val ${winsStat===2?'winner-val':''}">${valTwo}</span>
+          </div>
+        `;
+        statsContainer.appendChild(row);
+      });
+
+      // Animate bars after short delay
+      setTimeout(() => {
+        STATS.forEach(stat => {
+          const valOne = h1['stat_'+stat] || 0;
+          const valTwo = h2['stat_'+stat] || 0;
+          document.getElementById('bl-'+stat).style.width = valOne + '%';
+          document.getElementById('br-'+stat).style.width = valTwo + '%';
+        });
+      }, 200);
+
+      // ── BIO SECTIONS ──
+      document.getElementById('bio-title-one').textContent = h1.name + ' — Bio';
+      document.getElementById('bio-title-two').textContent = h2.name + ' — Bio';
+
+      [
+        { id: 'bio-one', hero: h1 },
+        { id: 'bio-two', hero: h2 }
+      ].forEach(({ id, hero }) => {
+        document.getElementById(id).innerHTML = `
+          <div class="bio-row"><span class="bio-key">Full Name</span><span class="bio-val">${hero.bio_fullname || '—'}</span></div>
+          <div class="bio-row"><span class="bio-key">Place of Birth</span><span class="bio-val">${hero.bio_placeofbirth || '—'}</span></div>
+          <div class="bio-row"><span class="bio-key">Alignment</span><span class="bio-val">${hero.bio_alignment || '—'}</span></div>
+          <div class="bio-row"><span class="bio-key">Gender</span><span class="bio-val">${hero.bio_gender || '—'}</span></div>
+          <div class="bio-row"><span class="bio-key">Race</span><span class="bio-val">${hero.bio_race || '—'}</span></div>
+        `;
+      });
+
+      // Show content
+      document.getElementById('comp-loading').style.display  = 'none';
+      document.getElementById('comp-content').style.display  = 'block';
+    }
+
+    // ── RESET ──
+    function resetComparison() {
+      document.getElementById('comparison-result').style.display = 'none';
+      document.getElementById('hero-one').value = '';
+      document.getElementById('hero-two').value = '';
+      document.getElementById('btn-compare').disabled = true;
+      document.getElementById('btn-compare').innerHTML = '<i class="fas fa-bolt"></i> COMPARE HEROES';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Init
+    loadDropdowns();
+  </script>
+
+</body>
+</html>

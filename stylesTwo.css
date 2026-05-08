@@ -89,6 +89,22 @@
   --hero-gradient: linear-gradient(135deg, #E31C23 0%, #1A1AE6 50%, #000000 100%);
 }
 
+/* Doctor Strange Theme */
+.theme-doctorstrange {
+  --hero-primary: #1A1A3A;
+  --hero-secondary: #D4AF37;
+  --hero-accent: #2E5B8A;
+  --hero-gradient: linear-gradient(135deg, #1A1A3A 0%, #2E5B8A 50%, #D4AF37 100%);
+}
+
+/* Black Panther Theme */
+.theme-blackpanther {
+  --hero-primary: #1A1A2A;
+  --hero-secondary: #9B59B6;
+  --hero-accent: #A67C00;
+  --hero-gradient: linear-gradient(135deg, #1A1A2A 0%, #2D2D44 50%, #9B59B6 100%);
+}
+
 /* ── RESET ── */
 *, *::before, *::after {
   margin: 0;
