@@ -798,3 +798,125 @@ footer {
     font-size: 1.1rem;
   }
 }
+
+
+/* ── SEARCH BAR ── */
+.search-wrap {
+  position: relative;
+  max-width: 420px;
+  margin: 0 auto 28px;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 11px 42px 11px 40px;
+  border: 2px solid var(--border-color);
+  border-radius: 50px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.95rem;
+  background: var(--hover-bg);
+  color: var(--text-primary);
+  transition: var(--transition);
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--primary-red);
+  background: var(--card-bg);
+  box-shadow: 0 0 0 3px rgba(237,29,36,0.1);
+}
+
+.search-input::placeholder { color: var(--text-muted); }
+
+.search-clear {
+  position: absolute;
+  right: 12px;
+  background: var(--text-muted);
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  font-size: 0.6rem;
+  transition: var(--transition);
+}
+
+.search-clear:hover { background: var(--primary-red); }
+
+
+/* ── HAMBURGER MENU ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 1100;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* Animate to X when open */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile dropdown */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 58px;
+    left: 0;
+    right: 0;
+    background: var(--nav-bg);
+    flex-direction: column;
+    padding: 12px 20px 20px;
+    gap: 4px;
+    border-bottom: 2px solid var(--primary-red);
+    backdrop-filter: blur(12px);
+    z-index: 999;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+  }
+}
