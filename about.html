@@ -1,43 +1,233 @@
 <!DOCTYPE html>
-<html  lang="en">
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Marvel Gallery</title>
+  <meta name="description" content="Learn about Marvel Gallery — a fan-made project celebrating Marvel's greatest heroes.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <title>Marvel Gallery - About Us</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
-
 <body>
-  <div id="menu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="index.html#contact">Contact Us</a>
-  </div>
 
-  <div class="about-container"> 
-    <h1>About Us</h1>
-    <p class="tagline">Your Ultimate Destination for Marvel Universe Exploration</p>
-    
-    <div class="mission-section">
+  <!-- NAVIGATION — matches index.html exactly -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">⚡ Marvel Gallery</a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#gallery">Heroes</a></li>
+          <li><a href="about.html" style="color:var(--marvel-gold);">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="compare.html">Compare</a></li>
+          <li><a href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO BANNER -->
+  <section class="hero-section" style="padding: 60px 20px;">
+    <div class="container">
+      <h1>About Us</h1>
+      <p>Your ultimate fan destination for Marvel Universe exploration</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- MISSION SECTION -->
+    <section class="welcome-section fade-in">
       <h2>Our Mission</h2>
-      <p>We are dedicated to bringing you the most comprehensive collection of Marvel character information from classic comic origins to big screen adaptations. This website was established in 2025 </p>
-    </div>
+      <p style="color:var(--text-secondary); font-size:1.05rem; max-width:750px; margin:0 auto 30px; text-align:center;">
+        Marvel Gallery is a fan-made website created for Marvel fans around the world. Our goal is to showcase
+        and celebrate iconic Marvel characters — their stories, powers, and cinematic appearances — in a fun
+        and interactive way.
+      </p>
 
-    <div class="team-grid">
-      <div class="team-member">
-        <img src="images/Founder.png" alt="Founder">
-        <h3>TJ Killer</h3>
-        <p>Founder</p>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+          <h4>Our Purpose</h4>
+          <p>Built in 2025 as a creative and educational project inspired by the Marvel Universe — bringing hero profiles to life.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-heart"></i></div>
+          <h4>Fan Made</h4>
+          <p>Every detail crafted with love by fans, for fans. No corporate agenda — just pure passion for Marvel's greatest heroes.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-globe"></i></div>
+          <h4>For Everyone</h4>
+          <p>Whether you're a lifelong comic reader or discovered Marvel through the films — there's something here for you.</p>
+        </div>
       </div>
-      <div class="team-member">
-        <img src="images/Designer.png" alt="Designer">
-        <h3>Sarah Connor</h3>
-        <p>Creative Director</p>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="gallery-section fade-in">
+      <h2>Meet the Team</h2>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:24px; margin-top:10px;">
+
+        <!-- Founder -->
+        <div class="feature-card" style="padding:30px 20px; text-align:center;">
+          <div style="
+            width:90px; height:90px;
+            border-radius:50%;
+            overflow:hidden;
+            border:3px solid var(--primary-red);
+            margin:0 auto 16px;
+            box-shadow: 0 4px 20px rgba(237,29,36,0.25);
+          ">
+            <img src="images/Founder.png" alt="TJ Killer"
+              style="width:100%; height:100%; object-fit:cover; display:block;"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:var(--primary-red);display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:1.8rem;color:white;\'>TJ</div>'">
+          </div>
+          <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:2px; color:var(--primary-red); margin-bottom:4px;">TJ Killer</h3>
+          <p style="font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:10px;">Founder & Developer</p>
+          <p style="color:var(--text-secondary); font-size:0.85rem;">Built Marvel Gallery from the ground up — from design to database.</p>
+        </div>
+
+        <!-- Designer -->
+        <div class="feature-card" style="padding:30px 20px; text-align:center;">
+          <div style="
+            width:90px; height:90px;
+            border-radius:50%;
+            overflow:hidden;
+            border:3px solid var(--primary-blue);
+            margin:0 auto 16px;
+            box-shadow: 0 4px 20px rgba(0,120,212,0.25);
+          ">
+            <img src="images/Designer.png" alt="Sarah Connor"
+              style="width:100%; height:100%; object-fit:cover; display:block;"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:var(--primary-blue);display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:1.8rem;color:white;\'>SC</div>'">
+          </div>
+          <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:2px; color:var(--primary-blue); margin-bottom:4px;">Sarah Connor</h3>
+          <p style="font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:10px;">Creative Director</p>
+          <p style="color:var(--text-secondary); font-size:0.85rem;">Shapes the visual identity and ensures every hero looks their best.</p>
+        </div>
+
       </div>
-    </div>
+    </section>
+
+    <!-- STATS SECTION — reusing existing stat-item styles -->
+    <section class="about-section fade-in">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>The Numbers</h2>
+          <p>Since launching in 2025, Marvel Gallery has grown into a go-to resource for fans wanting deep dives into their favourite heroes — from power stats to origin stories.</p>
+          <p>We're constantly adding new heroes, improving profiles, and listening to the community to make the experience better every day.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">9+</div>
+            <div class="stat-label">Heroes Profiled</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">2025</div>
+            <div class="stat-label">Year Founded</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Fan Made</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Marvel Love</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCLAIMER -->
+    <section class="welcome-section fade-in" style="padding:28px 40px;">
+      <div style="display:flex; align-items:flex-start; gap:16px; max-width:700px; margin:0 auto; text-align:left;">
+        <i class="fas fa-shield-alt" style="color:var(--primary-red); font-size:1.4rem; margin-top:2px; flex-shrink:0;"></i>
+        <div>
+          <h4 style="font-family:'Bebas Neue',sans-serif; letter-spacing:2px; color:var(--primary-red); margin-bottom:8px; font-size:1.1rem;">DISCLAIMER</h4>
+          <p style="color:var(--text-secondary); font-size:0.88rem; line-height:1.7;">
+            Marvel characters and related properties are owned by <strong>Marvel Entertainment</strong>.
+            This is an unofficial fan project and is not affiliated with, endorsed by, or connected to Marvel in any way.
+            All character names, images and trademarks belong to their respective owners.
+          </p>
+        </div>
+      </div>
+    </section>
+
   </div>
 
+  <!-- FOOTER — matches index.html -->
   <footer>
-    <p>2025 Marvel Gallery | Created by TJ Killer</p>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Heroes</a>
+        <a href="about.html">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p>&copy; 2025 Marvel Gallery • Fan-made website for Marvel fans.</p>
+      <p style="font-size:0.8rem; margin-top:8px;">Marvel characters and related properties belong to Marvel Entertainment.</p>
+    </div>
   </footer>
+
+  <script>
+    // Theme toggle — same logic as main.js
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon   = document.querySelector('.theme-icon');
+    const savedTheme  = localStorage.getItem('theme') || 'light';
+    document.body.dataset.theme = savedTheme;
+    themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+    themeToggle.addEventListener('click', () => {
+      const next = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.body.dataset.theme = next;
+      localStorage.setItem('theme', next);
+      themeIcon.textContent = next === 'dark' ? '☀️' : '🌙';
+      themeToggle.style.transform = 'scale(0.9)';
+      setTimeout(() => { themeToggle.style.transform = 'scale(1)'; }, 150);
+    });
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Fade-in observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
 </body>
 </html>

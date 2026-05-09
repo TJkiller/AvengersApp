@@ -273,7 +273,12 @@ nav {
   box-shadow: var(--shadow-md);
 }
 
-.feature-icon { font-size: 2.2rem; margin-bottom: 12px; }
+.feature-icon {
+  font-size: 2.2rem;
+  color: var(--primary-red);
+  margin-bottom: 12px;
+}
+
 .feature-card h4 {
   color: var(--primary-red);
   margin-bottom: 8px;
@@ -460,7 +465,11 @@ nav {
   box-shadow: var(--shadow-md);
 }
 
-.contact-icon { font-size: 2rem; margin-bottom: 12px; }
+.contact-icon {
+  font-size: 2rem;
+  color: var(--primary-red);
+  margin-bottom: 12px;
+}
 .contact-card h4 {
   color: var(--text-primary);
   font-size: 0.9rem;
