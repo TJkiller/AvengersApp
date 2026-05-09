@@ -228,7 +228,7 @@
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="index.html#gallery">Heroes</a></li>
-          <li><a href="index.html#about">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="index.html#contact">Contact</a></li>
           <li><a href="compare.html">Compare</a></li>
           <li><a href="leaderboard.html" style="color: var(--marvel-gold);">Leaderboard</a></li>
@@ -247,7 +247,7 @@
 
   <!-- PAGE HERO -->
   <div class="page-hero">
-    <h1>🏆 Power Rankings</h1>
+   <h1><i class="fas fa-trophy"></i> Power Rankings</h1>
     <p>See who ranks highest across every stat — pick a category and find out who's truly the mightiest</p>
   </div>
 
@@ -258,12 +258,12 @@
 
       <!-- Stat selector buttons -->
       <div class="stat-selector">
-        <button class="stat-btn active" data-stat="stat_combat">⚔️ Combat</button>
-        <button class="stat-btn" data-stat="stat_strength">💪 Strength</button>
-        <button class="stat-btn" data-stat="stat_intelligence">🧠 Intelligence</button>
-        <button class="stat-btn" data-stat="stat_speed">⚡ Speed</button>
-        <button class="stat-btn" data-stat="stat_durability">🛡️ Durability</button>
-        <button class="stat-btn" data-stat="stat_power">✨ Power</button>
+<button class="stat-btn active" data-stat="stat_combat"><i class="fas fa-fist-raised"></i> Combat</button>
+      <button class="stat-btn" data-stat="stat_strength"><i class="fas fa-dumbbell"></i> Strength</button>
+      <button class="stat-btn" data-stat="stat_intelligence"><i class="fas fa-brain"></i> Intelligence</button>
+      <button class="stat-btn" data-stat="stat_speed"><i class="fas fa-bolt"></i> Speed</button>
+      <button class="stat-btn" data-stat="stat_durability"><i class="fas fa-shield-alt"></i> Durability</button>
+      <button class="stat-btn" data-stat="stat_power"><i class="fas fa-fire"></i> Power</button>
       </div>
 
       <!-- Loading -->
@@ -286,9 +286,9 @@
         <a href="index.html#gallery">Heroes</a>
         <a href="compare.html">Compare</a>
         <a href="leaderboard.html">Leaderboard</a>
-      </div>
-      <p>&copy; 2025 Marvel Gallery. Created with ❤️ for Marvel fans worldwide.</p>
-      <p style="font-size:0.8rem; margin-top:8px;">This is a fan made website. Marvel characters are property of Marvel Entertainment.</p>
+       </div>
+      <p>&copy; 2025 Marvel Gallery • Fan-made website for Marvel fans.</p>
+      <p style="font-size: 0.8rem; margin-top: 8px;">Marvel characters and related properties belong to Marvel Entertainment.</p>
     </div>
   </footer>
 
@@ -331,7 +331,7 @@
         const score     = hero[stat] || 0;
         const barWidth  = Math.round((score / max) * 100);
         const rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
-        const rankIcon  = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `#${i + 1}`;
+        const rankIcon = i === 0 ? '<i class="fas fa-medal" style="color:#FFD700"></i>' : i === 1 ? '<i class="fas fa-medal" style="color:#C0C0C0"></i>' : i === 2 ? '<i class="fas fa-medal" style="color:#CD7F32"></i>' : `#${i + 1}`;
 
         return `
           <a class="lb-row" href="hero.html?id=${hero.id}">

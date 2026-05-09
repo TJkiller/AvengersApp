@@ -4,156 +4,238 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marvel Hero</title>
-  <link rel="stylesheet" href="stylesTwo.css">
+  <meta name="description" content="Full hero profile — powers, bio and stats.">
+  <link rel="stylesheet" href="stylehero.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 
-  <div id="menu">
-    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-    <a href="index.html#about"><i class="fas fa-info-circle"></i> About Us</a>
-    <a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a>
+  <!-- AMBIENT GLOW ORBS -->
+  <div class="ambient-container" id="ambient-container">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
   </div>
 
-  <div class="hero-container">
+  <!-- SCAN LINE OVERLAY -->
+  <div class="scanlines"></div>
 
-    <div id="loading" style="text-align:center; padding: 60px;">
-      <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #ED1D24;"></i>
-      <p style="margin-top: 20px; font-size: 1.2rem;">Loading hero...</p>
-    </div>
+  <!-- HUD CORNER DECORATIONS -->
+  <div class="hud-corner hud-tl"></div>
+  <div class="hud-corner hud-tr"></div>
+  <div class="hud-corner hud-bl"></div>
+  <div class="hud-corner hud-br"></div>
 
-    <div id="error" style="display:none; text-align:center; padding: 60px;">
-      <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ED1D24;"></i>
-      <h2 style="margin-top: 20px;">Hero Not Found</h2>
-      <p style="margin-top: 10px;">We couldn't find that hero. Please go back home.</p>
-      <a href="index.html" style="display:inline-block; margin-top: 20px; padding: 12px 30px; background: #ED1D24; color: white; border-radius: 50px; text-decoration: none; font-weight: bold;">
-        <i class="fas fa-home"></i> Go Home
+  <!-- NAVIGATION -->
+  <nav class="stark-nav" id="stark-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">MARVEL <span class="logo-accent">GALLERY</span></span>
       </a>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="index.html#gallery"><i class="fas fa-th"></i> Heroes</a></li>
+        <li><a href="compare.html"><i class="fas fa-exchange-alt"></i> Compare</a></li>
+        <li><a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+        <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- LOADING STATE -->
+  <div id="state-loading" class="full-state">
+    <div class="loading-ring">
+      <div class="ring-segment"></div>
+      <div class="ring-segment"></div>
+      <div class="ring-segment"></div>
+    </div>
+    <p class="loading-text">INITIALISING STARK DATABASE<span class="blink">_</span></p>
+  </div>
+
+  <!-- ERROR STATE -->
+  <div id="state-error" class="full-state" style="display:none;">
+    <i class="fas fa-skull-crossbones error-icon"></i>
+    <h2 class="error-title">CLASSIFIED — HERO NOT FOUND</h2>
+    <p class="error-sub">No match in the Stark Industries database.</p>
+    <a href="index.html" class="stark-btn">
+      <i class="fas fa-home"></i> Return to Gallery
+    </a>
+  </div>
+
+  <!-- HERO PAGE -->
+  <div id="hero-page" style="display:none;">
+
+    <!-- CINEMATIC BANNER -->
+    <div class="hero-banner">
+      <div class="banner-bg" id="banner-bg"></div>
+      <div class="banner-vignette"></div>
+
+      <!-- CLASSIFIED TAPE -->
+      <div class="classified-tape">
+        <span>STARK INDUSTRIES — CLASSIFIED FILE</span>
+        <span>STARK INDUSTRIES — CLASSIFIED FILE</span>
+        <span>STARK INDUSTRIES — CLASSIFIED FILE</span>
+        <span>STARK INDUSTRIES — CLASSIFIED FILE</span>
+      </div>
+
+      <div class="banner-content">
+        <!-- HERO IMAGE -->
+        <div class="hero-image-wrap">
+          <div class="image-glow" id="image-glow"></div>
+          <img id="hero-img" src="" alt="" />
+          <div class="image-scanline"></div>
+        </div>
+
+        <!-- BANNER TEXT -->
+        <div class="banner-text">
+          <div class="hero-badge" id="hero-badge">
+            <i id="hero-icon" class="fas fa-star"></i>
+            <span id="hero-title-tag">AVENGER</span>
+          </div>
+
+          <h1 class="hero-name" id="hero-name"></h1>
+
+          <p class="hero-description" id="hero-description"></p>
+
+          <div class="banner-meta" id="banner-meta">
+            <!-- Filled by JS: alignment + race chips -->
+          </div>
+
+          <div class="banner-actions">
+            <a href="compare.html" class="stark-btn">
+              <i class="fas fa-exchange-alt"></i> Compare Hero
+            </a>
+            <a href="leaderboard.html" class="stark-btn stark-btn--ghost">
+              <i class="fas fa-trophy"></i> Leaderboard
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div id="hero-content" style="display:none;">
-      <div class="hero-header">
-        <h2 class="hero-name" id="hero-title"></h2>
+    <!-- MAIN CONTENT -->
+    <div class="hero-main">
+
+      <!-- QUICK STATS STRIP -->
+      <div class="qs-strip" id="quick-stats">
+        <div class="qs-item" data-stat="intelligence">
+          <span class="qs-val" id="qs-intelligence">—</span>
+          <span class="qs-lbl"><i class="fas fa-brain"></i> INT</span>
+          <div class="qs-bar"><div class="qs-fill" id="qfill-intelligence"></div></div>
+        </div>
+        <div class="qs-item" data-stat="strength">
+          <span class="qs-val" id="qs-strength">—</span>
+          <span class="qs-lbl"><i class="fas fa-dumbbell"></i> STR</span>
+          <div class="qs-bar"><div class="qs-fill" id="qfill-strength"></div></div>
+        </div>
+        <div class="qs-item" data-stat="speed">
+          <span class="qs-val" id="qs-speed">—</span>
+          <span class="qs-lbl"><i class="fas fa-bolt"></i> SPD</span>
+          <div class="qs-bar"><div class="qs-fill" id="qfill-speed"></div></div>
+        </div>
+        <div class="qs-item" data-stat="durability">
+          <span class="qs-val" id="qs-durability">—</span>
+          <span class="qs-lbl"><i class="fas fa-shield-alt"></i> DUR</span>
+          <div class="qs-bar"><div class="qs-fill" id="qfill-durability"></div></div>
+        </div>
+        <div class="qs-item" data-stat="power">
+          <span class="qs-val" id="qs-power">—</span>
+          <span class="qs-lbl"><i class="fas fa-fire"></i> PWR</span>
+          <div class="qs-bar"><div class="qs-fill" id="qfill-power"></div></div>
+        </div>
+        <div class="qs-item" data-stat="combat">
+          <span class="qs-val" id="qs-combat">—</span>
+          <span class="qs-lbl"><i class="fas fa-fist-raised"></i> CMB</span>
+          <div class="qs-bar"><div class="qs-fill" id="qfill-combat"></div></div>
+        </div>
+        <div class="qs-item qs-total">
+          <span class="qs-val" id="qs-total">—</span>
+          <span class="qs-lbl"><i class="fas fa-star"></i> TOTAL</span>
+          <div class="qs-bar"><div class="qs-fill qs-fill--gold" style="width:100%"></div></div>
+        </div>
       </div>
 
-      <div class="hero-content">
-        <div class="hero-image">
-          <img id="hero-image" src="" alt="">
-        </div>
-        <div class="hero-details">
-          <div class="bio-section">
-            <h4><i class="fas fa-user"></i> Bio</h4>
-            <p><strong>Full Name:</strong> <span id="bio-fullName"></span></p>
-            <p><strong>Place of Birth:</strong> <span id="bio-placeOfBirth"></span></p>
-            <p><strong>Alignment:</strong> <span id="bio-alignment"></span></p>
-            <p><strong>Gender:</strong> <span id="bio-gender"></span></p>
-            <p><strong>Race:</strong> <span id="bio-race"></span></p>
+      <!-- CONTENT GRID -->
+      <div class="content-grid">
+
+        <!-- BIO PANEL -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <div class="panel-header-icon"><i class="fas fa-id-card"></i></div>
+            <span class="panel-title">AGENT DOSSIER</span>
+            <div class="panel-header-line"></div>
           </div>
-          <div class="stats-section">
-            <h4><i class="fas fa-chart-line"></i> Power Stats</h4>
-            <p><strong>Intelligence:</strong> <span class="stat-value" id="stat-intelligence"></span><span class="stat-bar"><span class="stat-fill" id="fill-intelligence"></span></span></p>
-            <p><strong>Strength:</strong> <span class="stat-value" id="stat-strength"></span><span class="stat-bar"><span class="stat-fill" id="fill-strength"></span></span></p>
-            <p><strong>Speed:</strong> <span class="stat-value" id="stat-speed"></span><span class="stat-bar"><span class="stat-fill" id="fill-speed"></span></span></p>
-            <p><strong>Durability:</strong> <span class="stat-value" id="stat-durability"></span><span class="stat-bar"><span class="stat-fill" id="fill-durability"></span></span></p>
-            <p><strong>Power:</strong> <span class="stat-value" id="stat-power"></span><span class="stat-bar"><span class="stat-fill" id="fill-power"></span></span></p>
-            <p><strong>Combat:</strong> <span class="stat-value" id="stat-combat"></span><span class="stat-bar"><span class="stat-fill" id="fill-combat"></span></span></p>
+          <div class="panel-body">
+            <div class="dossier-row">
+              <span class="dossier-key">FULL NAME</span>
+              <span class="dossier-val" id="bio-fullname">—</span>
+            </div>
+            <div class="dossier-row">
+              <span class="dossier-key">PLACE OF BIRTH</span>
+              <span class="dossier-val" id="bio-placeofbirth">—</span>
+            </div>
+            <div class="dossier-row">
+              <span class="dossier-key">ALIGNMENT</span>
+              <span class="dossier-val" id="bio-alignment">—</span>
+            </div>
+            <div class="dossier-row">
+              <span class="dossier-key">GENDER</span>
+              <span class="dossier-val" id="bio-gender">—</span>
+            </div>
+            <div class="dossier-row">
+              <span class="dossier-key">RACE / SPECIES</span>
+              <span class="dossier-val" id="bio-race">—</span>
+            </div>
           </div>
         </div>
+
+        <!-- STATS PANEL -->
+        <div class="glass-panel">
+          <div class="panel-header">
+            <div class="panel-header-icon"><i class="fas fa-chart-bar"></i></div>
+            <span class="panel-title">POWER STATS</span>
+            <div class="panel-header-line"></div>
+          </div>
+          <div class="panel-body" id="stats-body">
+            <!-- Built by JS -->
+          </div>
+        </div>
+
       </div>
 
-      <div class="next-btn" id="next-btn"></div>
+      <!-- NEXT HERO -->
+      <div class="next-section" id="next-section"></div>
+
     </div>
   </div>
 
-  <a href="#" class="back-to-top" id="back-to-top">
+  <!-- BACK TO TOP -->
+  <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">
     <i class="fas fa-arrow-up"></i>
   </a>
 
-  <footer>
-    <p>2025 Marvel Gallery | Created by TJ Killer</p>
+  <!-- FOOTER -->
+  <footer class="stark-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">⚡ MARVEL GALLERY</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#gallery">Heroes</a>
+        <a href="compare.html">Compare</a>
+        <a href="leaderboard.html">Leaderboard</a>
+      </div>
+      <p class="footer-copy">&copy; 2025 Marvel Gallery. Fan made website. Marvel characters are property of Marvel Entertainment.</p>
+    </div>
   </footer>
 
-  <script>
-    // ── SUPABASE CONFIG ──
-    const SUPABASE_URL = 'https://zxhubiaitwrkyxoiojei.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4aHViaWFpdHdya3l4b2lvamVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5OTY2ODksImV4cCI6MjA5MzU3MjY4OX0.4v-vO3JA2jAU1ItSRHFOoZDfAjHEFmkuiPhDBy7ljiU';
-    const HEADERS = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
-
-    // Get hero id from URL e.g. hero.html?id=thor
-    const heroId = new URLSearchParams(window.location.search).get('id');
-    if (!heroId) { showError(); } else { loadHero(heroId); }
-
-    async function loadHero(id) {
-      try {
-        const res  = await fetch(`${SUPABASE_URL}/rest/v1/heroes?id=eq.${id}&select=*`, { headers: HEADERS });
-        const data = await res.json();
-        if (!data || data.length === 0) { showError(); return; }
-
-        const hero = data[0];
-        let nextHero = null;
-
-        if (hero.next_hero) {
-          const nr   = await fetch(`${SUPABASE_URL}/rest/v1/heroes?id=eq.${hero.next_hero}&select=id,name`, { headers: HEADERS });
-          const nd   = await nr.json();
-          if (nd && nd.length > 0) nextHero = nd[0];
-        }
-
-        buildPage(hero, nextHero);
-      } catch (err) {
-        console.error('Supabase error:', err);
-        showError();
-      }
-    }
-
-    function buildPage(hero, nextHero) {
-      document.title = hero.name + ' - Marvel Hero';
-      document.body.className = hero.theme || '';
-
-      document.getElementById('hero-title').innerHTML = `<i class="${hero.icon || 'fas fa-star'}"></i> ${hero.name}`;
-      document.getElementById('hero-image').src = hero.image;
-      document.getElementById('hero-image').alt = hero.name;
-
-      // Bio — Supabase uses lowercase column names
-      document.getElementById('bio-fullName').textContent     = hero.bio_fullname     || '—';
-      document.getElementById('bio-placeOfBirth').textContent = hero.bio_placeofbirth || '—';
-      document.getElementById('bio-alignment').textContent    = hero.bio_alignment    || '—';
-      document.getElementById('bio-gender').textContent       = hero.bio_gender       || '—';
-      document.getElementById('bio-race').textContent         = hero.bio_race         || '—';
-
-      // Stats — columns: stat_intelligence, stat_strength etc.
-      ['intelligence','strength','speed','durability','power','combat'].forEach(stat => {
-        const value = hero['stat_' + stat] || 0;
-        document.getElementById('stat-' + stat).textContent = value + '%';
-        setTimeout(() => {
-          document.getElementById('fill-' + stat).style.width = value + '%';
-        }, 300);
-      });
-
-      // Next hero button
-      const nextBtn = document.getElementById('next-btn');
-      if (hero.next_hero && nextHero) {
-        nextBtn.innerHTML = `<a href="hero.html?id=${hero.next_hero}"><i class="fas fa-arrow-right"></i> Next: ${nextHero.name}</a>`;
-      } else {
-        nextBtn.innerHTML = `<a href="index.html"><i class="fas fa-home"></i> Return Home</a>`;
-      }
-
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('hero-content').style.display = 'block';
-    }
-
-    function showError() {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('error').style.display = 'block';
-    }
-
-    // Back to top
-    const backToTop = document.getElementById('back-to-top');
-    backToTop.addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
-    window.addEventListener('scroll', () => {
-      backToTop.style.opacity    = window.pageYOffset > 300 ? '1' : '0';
-      backToTop.style.visibility = window.pageYOffset > 300 ? 'visible' : 'hidden';
-    });
-  </script>
+  <script src="hero.js"></script>
 </body>
 </html>
